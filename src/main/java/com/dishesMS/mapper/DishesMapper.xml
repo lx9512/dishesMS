@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dishesMS.dao.IDishesDAO">
+    <resultMap id="dishesResultMapper" type="com.dishesMS.model.Dishes">
+        <id property="id" column="id"/>
+        <result property="name" column="name" />
+        <result property="price" column="price" />
+        <result property="acridity" column="acridity" />
+        <association property="dishesVariety" column="variety_id"
+                     select="com.dishesMS.dao.IDishesVarietyDAO.selectDishesVarietyById"
+                     javaType="com.dishesMS.model.DishesVariety"
+        />
+    </resultMap>
+
+    <insert id="insertDishes" parameterType="com.dishesMS.model.Dishes" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO dishes_info(name,price,acridity,variety_id) VALUES (#{name},#{price},#{acridity},#{dishesVariety.id})
+    </insert>
+
+    <select id="selectAllDishes" resultMap="dishesResultMapper">
+        select * from dishes_info
+    </select>
+
+    <select id="selectDishesByDishesVarietyId" parameterType="int" resultType="com.dishesMS.model.Dishes">
+        select * from dishes_info where variety_id = #{dishesVarietyId}
+    </select>
+</mapper>
