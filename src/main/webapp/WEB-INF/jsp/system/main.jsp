@@ -145,7 +145,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="#">登录</a> </li>
                     <li><a href="#">注册</a> </li>
-                    <li><a href="#"></a> </li>
+                    <li><a href="/staff/logout">退出</a> </li>
                     <li><a href="#"></a> </li>
                 </ul>
             </div>
@@ -157,8 +157,8 @@
             <div class="col-sm-3 col-md-2 sidebar">
                 <div>菜品管理</div>
                 <ul>
-                    <li><a href="#">菜品信息</a> </li>
-                    <li><a href="#">类别管理</a> </li>
+                    <li><a href="/dishes/jumpDishes">菜品信息</a> </li>
+                    <li><a href="/dishesVariety/jumpDishesVariety">类别管理</a> </li>
                 </ul>
                 <div>订单管理</div>
                 <ul>
@@ -173,8 +173,8 @@
                 <div class="nav nav-sidebar">人员管理</div>
                 <ul>
                     <li class="active"><a href="#">会员信息</a> </li>
-                    <li class=""><a href="#">员工信息</a> </li>
-                    <li class=""><a href="#">职位管理</a> </li>
+                    <li class=""><a href="/staff/jumpStaffPage">员工信息</a> </li>
+                    <li class=""><a href="/role/jumpRolePage">职位管理</a> </li>
                 </ul>
                 <div>数据统计</div>
 

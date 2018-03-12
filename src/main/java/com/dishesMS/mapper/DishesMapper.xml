@@ -23,4 +23,38 @@
     <select id="selectDishesByDishesVarietyId" parameterType="int" resultType="com.dishesMS.model.Dishes">
         select * from dishes_info where variety_id = #{dishesVarietyId}
     </select>
+
+    <select id="selectDishesById" resultType="com.dishesMS.model.Dishes">
+        SELECT * form dishes_info where id = #{id}
+    </select>
+
+    <select id="selectDishesByName" resultType="com.dishesMS.model.Dishes">
+        select * from dishes_info where name LIKE #{name}
+    </select>
+
+    <update id="updateDishes" parameterType="com.dishesMS.model.Dishes">
+        UPDATE dishes_info
+        <set>
+            <if test="name != null">
+                name=#{name},
+            </if>
+            <if test="dishesVariety.id != null">
+                variety_id = #{dishesVariety.id},
+            </if>
+            <if test="price != null">
+                price = #{price},
+            </if>
+            <if test="acridity != null">
+                acridity = #{acridity},
+            </if>
+            <if test="photoPath != null">
+                photo_path = #{photoPath},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteDishes" parameterType="int">
+        DELETE FROM dishes_info where id = #{id}
+    </delete>
 </mapper>

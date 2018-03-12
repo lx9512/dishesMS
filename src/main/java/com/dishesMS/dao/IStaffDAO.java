@@ -1,6 +1,7 @@
 package com.dishesMS.dao;
 
 import com.dishesMS.model.Staff;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -14,4 +15,9 @@ public interface IStaffDAO {
 
     public int insertStaff(Staff staff);
     public List<Staff> selectAll();
+    public Staff selectStaffByAccount(String account);
+    public Staff selectStaffByAccountOrIdCard(@Param("account") String account, @Param("idCard")String idCard);
+    public Staff selectStaffById(int id);
+    public void updateStaff(Staff staff);
+    public void deleteStaff(int id);
 }

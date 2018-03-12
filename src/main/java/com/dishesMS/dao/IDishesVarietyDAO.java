@@ -14,4 +14,8 @@ public interface IDishesVarietyDAO {
     //public DishesVariety selectDishesVarietyById();
     public void insertDishesVariety(DishesVariety dishesVariety);
     public List<DishesVariety> selectAllDishesVariety();
+    public DishesVariety selectDishesVarietyById(int id);
+    public DishesVariety selectDishesVarietyByName(String name);
+    public void updateDishesVariety(DishesVariety dishesVariety);
+    public void deleteDishesVariety(int id);
 }

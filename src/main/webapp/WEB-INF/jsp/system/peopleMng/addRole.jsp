@@ -9,8 +9,8 @@
 </head>
 
 <body>
-    <form action="role/add">
-        <label>权限名:</label>
+    <form action="add">
+        <label>职位名称:</label>
         <input type="text" id="title" name="title">
         <br>
         <label>描述:</label>
