@@ -1,98 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8e241b1c-f550-44af-8b7a-32cc45e251c2" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__aopalliance_aopalliance_1_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__cglib_cglib_3_2_5.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_inject_extensions_guice_multibindings_3_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_inject_guice_3_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_beanutils_commons_beanutils_1_8_3.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_inject_javax_inject_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__net_sf_ehcache_ehcache_2_10_3.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_ant_ant_1_9_6.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_ant_ant_launcher_1_9_6.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_shiro_shiro_all_1_3_2.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_shiro_shiro_core_1_3_2.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_shiro_shiro_guice_1_3_2.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_ow2_asm_asm_5_2.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/dishesMS/common/EncryptionByMD5.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/dishesMS/shiro/ShiroRealm.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/ehcache.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/system/dishesMng/dishesPage.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/system/dishesMng/dishesVarietyPage.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/system/dishesMng/editDishes.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/system/dishesMng/editDishesVariety.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/system/peopleMng/editRole.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/system/peopleMng/editStaff.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/system/peopleMng/rolePage.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/system/peopleMng/staffPage.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/login.jsp" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/dishesMS_war_exploded/WEB-INF/jsp/system/addRole.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/dishesMS_war_exploded/WEB-INF/jsp/system/addStaff.jsp" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/dishesMS/controller/RoleController.class" afterPath="$PROJECT_DIR$/target/classes/com/dishesMS/controller/RoleController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/dishesMS/controller/StaffController.class" afterPath="$PROJECT_DIR$/target/classes/com/dishesMS/controller/StaffController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/dishesMS/dao/IRoleDAO.class" afterPath="$PROJECT_DIR$/target/classes/com/dishesMS/dao/IRoleDAO.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/dishesMS/dao/IStaffDAO.class" afterPath="$PROJECT_DIR$/target/classes/com/dishesMS/dao/IStaffDAO.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/dishesMS/model/Role.class" afterPath="$PROJECT_DIR$/target/classes/com/dishesMS/model/Role.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/dishesMS/model/Staff.class" afterPath="$PROJECT_DIR$/target/classes/com/dishesMS/model/Staff.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/dishesMS/service/IRoleService.class" afterPath="$PROJECT_DIR$/target/classes/com/dishesMS/service/IRoleService.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/dishesMS/service/IStaffService.class" afterPath="$PROJECT_DIR$/target/classes/com/dishesMS/service/IStaffService.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/dishesMS/service/imp/RoleServiceImp.class" afterPath="$PROJECT_DIR$/target/classes/com/dishesMS/service/imp/RoleServiceImp.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/dishesMS/service/imp/StaffServiceImp.class" afterPath="$PROJECT_DIR$/target/classes/com/dishesMS/service/imp/StaffServiceImp.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/dishesMS_war_exploded/WEB-INF/classes/com/dishesMS/controller/RoleController.class" afterPath="$PROJECT_DIR$/target/dishesMS_war_exploded/WEB-INF/classes/com/dishesMS/controller/RoleController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/dishesMS_war_exploded/WEB-INF/classes/com/dishesMS/controller/StaffController.class" afterPath="$PROJECT_DIR$/target/dishesMS_war_exploded/WEB-INF/classes/com/dishesMS/controller/StaffController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/dishesMS_war_exploded/WEB-INF/classes/com/dishesMS/dao/IRoleDAO.class" afterPath="$PROJECT_DIR$/target/dishesMS_war_exploded/WEB-INF/classes/com/dishesMS/dao/IRoleDAO.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/dishesMS_war_exploded/WEB-INF/classes/com/dishesMS/dao/IStaffDAO.class" afterPath="$PROJECT_DIR$/target/dishesMS_war_exploded/WEB-INF/classes/com/dishesMS/dao/IStaffDAO.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/dishesMS_war_exploded/WEB-INF/classes/com/dishesMS/model/Role.class" afterPath="$PROJECT_DIR$/target/dishesMS_war_exploded/WEB-INF/classes/com/dishesMS/model/Role.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/dishesMS_war_exploded/WEB-INF/classes/com/dishesMS/model/Staff.class" afterPath="$PROJECT_DIR$/target/dishesMS_war_exploded/WEB-INF/classes/com/dishesMS/model/Staff.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/dishesMS_war_exploded/WEB-INF/classes/com/dishesMS/service/IRoleService.class" afterPath="$PROJECT_DIR$/target/dishesMS_war_exploded/WEB-INF/classes/com/dishesMS/service/IRoleService.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/dishesMS_war_exploded/WEB-INF/classes/com/dishesMS/service/IStaffService.class" afterPath="$PROJECT_DIR$/target/dishesMS_war_exploded/WEB-INF/classes/com/dishesMS/service/IStaffService.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/dishesMS_war_exploded/WEB-INF/classes/com/dishesMS/service/imp/RoleServiceImp.class" afterPath="$PROJECT_DIR$/target/dishesMS_war_exploded/WEB-INF/classes/com/dishesMS/service/imp/RoleServiceImp.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/dishesMS_war_exploded/WEB-INF/classes/com/dishesMS/service/imp/StaffServiceImp.class" afterPath="$PROJECT_DIR$/target/dishesMS_war_exploded/WEB-INF/classes/com/dishesMS/service/imp/StaffServiceImp.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/dishesMS_war_exploded.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/dishesMS_war_exploded.xml" />
+    <list default="true" id="8e241b1c-f550-44af-8b7a-32cc45e251c2" name="Default" comment="菜品管理（无新增菜品），人员管理">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dishesMS.iml" afterPath="$PROJECT_DIR$/dishesMS.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dishesMS/controller/DishesController.java" afterPath="$PROJECT_DIR$/src/main/java/com/dishesMS/controller/DishesController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dishesMS/controller/DishesVarietyController.java" afterPath="$PROJECT_DIR$/src/main/java/com/dishesMS/controller/DishesVarietyController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dishesMS/controller/RoleController.java" afterPath="$PROJECT_DIR$/src/main/java/com/dishesMS/controller/RoleController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dishesMS/controller/StaffController.java" afterPath="$PROJECT_DIR$/src/main/java/com/dishesMS/controller/StaffController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dishesMS/dao/IDishesDAO.java" afterPath="$PROJECT_DIR$/src/main/java/com/dishesMS/dao/IDishesDAO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dishesMS/dao/IDishesVarietyDAO.java" afterPath="$PROJECT_DIR$/src/main/java/com/dishesMS/dao/IDishesVarietyDAO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dishesMS/dao/IRoleDAO.java" afterPath="$PROJECT_DIR$/src/main/java/com/dishesMS/dao/IRoleDAO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dishesMS/dao/IStaffDAO.java" afterPath="$PROJECT_DIR$/src/main/java/com/dishesMS/dao/IStaffDAO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dishesMS/mapper/DishesMapper.xml" afterPath="$PROJECT_DIR$/src/main/java/com/dishesMS/mapper/DishesMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dishesMS/mapper/DishesVarietyMapper.xml" afterPath="$PROJECT_DIR$/src/main/java/com/dishesMS/mapper/DishesVarietyMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dishesMS/mapper/RoleMapper.xml" afterPath="$PROJECT_DIR$/src/main/java/com/dishesMS/mapper/RoleMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dishesMS/mapper/StaffMapper.xml" afterPath="$PROJECT_DIR$/src/main/java/com/dishesMS/mapper/StaffMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dishesMS/model/Dishes.java" afterPath="$PROJECT_DIR$/src/main/java/com/dishesMS/model/Dishes.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dishesMS/model/Staff.java" afterPath="$PROJECT_DIR$/src/main/java/com/dishesMS/model/Staff.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dishesMS/service/IDishesService.java" afterPath="$PROJECT_DIR$/src/main/java/com/dishesMS/service/IDishesService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dishesMS/service/IDishesVarietyService.java" afterPath="$PROJECT_DIR$/src/main/java/com/dishesMS/service/IDishesVarietyService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dishesMS/service/IRoleService.java" afterPath="$PROJECT_DIR$/src/main/java/com/dishesMS/service/IRoleService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dishesMS/service/IStaffService.java" afterPath="$PROJECT_DIR$/src/main/java/com/dishesMS/service/IStaffService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dishesMS/service/imp/DishesService.java" afterPath="$PROJECT_DIR$/src/main/java/com/dishesMS/service/imp/DishesService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dishesMS/service/imp/DishesVarietyService.java" afterPath="$PROJECT_DIR$/src/main/java/com/dishesMS/service/imp/DishesVarietyService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dishesMS/service/imp/RoleServiceImp.java" afterPath="$PROJECT_DIR$/src/main/java/com/dishesMS/service/imp/RoleServiceImp.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dishesMS/service/imp/StaffServiceImp.java" afterPath="$PROJECT_DIR$/src/main/java/com/dishesMS/service/imp/StaffServiceImp.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/spring-mvc.xml" afterPath="$PROJECT_DIR$/src/main/resources/spring-mvc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/spring-mybatis.xml" afterPath="$PROJECT_DIR$/src/main/resources/spring-mybatis.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/system/dishesMng/addDishes.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/system/dishesMng/addDishes.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/system/dishesMng/addDishesVariety.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/system/dishesMng/addDishesVariety.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/system/peopleMng/addRole.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/system/peopleMng/addRole.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/system/peopleMng/addStaff.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/system/peopleMng/addStaff.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/dishesMS/mapper/RoleMapper.xml" afterPath="$PROJECT_DIR$/target/classes/com/dishesMS/mapper/RoleMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/dishesMS/mapper/StaffMapper.xml" afterPath="$PROJECT_DIR$/target/classes/com/dishesMS/mapper/StaffMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/spring-mvc.xml" afterPath="$PROJECT_DIR$/target/classes/spring-mvc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/spring-mybatis.xml" afterPath="$PROJECT_DIR$/target/classes/spring-mybatis.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/dishesMS_war_exploded/WEB-INF/classes/com/dishesMS/mapper/RoleMapper.xml" afterPath="$PROJECT_DIR$/target/dishesMS_war_exploded/WEB-INF/classes/com/dishesMS/mapper/RoleMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/dishesMS_war_exploded/WEB-INF/classes/com/dishesMS/mapper/StaffMapper.xml" afterPath="$PROJECT_DIR$/target/dishesMS_war_exploded/WEB-INF/classes/com/dishesMS/mapper/StaffMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/dishesMS_war_exploded/WEB-INF/classes/spring-mvc.xml" afterPath="$PROJECT_DIR$/target/dishesMS_war_exploded/WEB-INF/classes/spring-mvc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/dishesMS_war_exploded/WEB-INF/classes/spring-mybatis.xml" afterPath="$PROJECT_DIR$/target/dishesMS_war_exploded/WEB-INF/classes/spring-mybatis.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/dishesMS_war_exploded/WEB-INF/jsp/system/main.jsp" afterPath="$PROJECT_DIR$/target/dishesMS_war_exploded/WEB-INF/jsp/system/main.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/dishesMS_war_exploded/WEB-INF/web.xml" afterPath="$PROJECT_DIR$/target/dishesMS_war_exploded/WEB-INF/web.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/main.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/system/main.jsp" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -118,10 +28,11 @@
       <file leaf-file-name="DishesController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/dishesMS/controller/DishesController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="173">
+            <state relative-caret-position="1606">
               <caret line="92" column="0" lean-forward="false" selection-start-line="92" selection-start-column="0" selection-end-line="92" selection-end-column="0" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#2453#2454#0" expanded="false" />
+                <element signature="e#2518#2519#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -130,8 +41,8 @@
       <file leaf-file-name="IStaffService.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/dishesMS/service/IStaffService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="115">
-              <caret line="12" column="4" lean-forward="false" selection-start-line="12" selection-start-column="4" selection-end-line="12" selection-end-column="4" />
+            <state relative-caret-position="132">
+              <caret line="8" column="3" lean-forward="true" selection-start-line="8" selection-start-column="3" selection-end-line="8" selection-end-column="3" />
               <folding />
             </state>
           </provider>
@@ -466,70 +377,6 @@
               <option name="myItemId" value="main" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dishesMS" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dishesMS" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resource" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dishesMS" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dishesMS" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resource" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="images" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dishes" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -614,7 +461,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="reference.settings.project.maven.repository.indices" />
+    <property name="settings.editor.selected.configurable" value="settings.github" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -1209,12 +1056,30 @@
       <workItem from="1520735691321" duration="3734000" />
       <workItem from="1520754286195" duration="5950000" />
       <workItem from="1520778723544" duration="3298000" />
-      <workItem from="1520846094817" duration="837000" />
+      <workItem from="1520846094817" duration="1737000" />
+      <workItem from="1520924380104" duration="3188000" />
     </task>
+    <task id="LOCAL-00001" summary="菜品管理（无新增菜品），人员管理">
+      <created>1520847563336</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1520847563336</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="212353000" />
+    <option name="totallyTimeSpent" value="216441000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -1222,7 +1087,7 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34918034" sideWeight="0.50907713" order="10" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34918034" sideWeight="0.50907713" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32786885" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="CDI" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1235,8 +1100,7 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3786885" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3409836" sideWeight="0.4969697" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295082" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
@@ -1245,7 +1109,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30327868" sideWeight="0.49092284" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295082" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295082" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2912254" sideWeight="0.48214287" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.295764" sideWeight="0.48214287" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20196672" sideWeight="0.51785713" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
@@ -1254,6 +1118,7 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="combo" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3409836" sideWeight="0.4969697" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
     </layout>
@@ -1265,7 +1130,8 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <option name="LAST_COMMIT_MESSAGE" value="" />
+    <MESSAGE value="菜品管理（无新增菜品），人员管理" />
+    <option name="LAST_COMMIT_MESSAGE" value="菜品管理（无新增菜品），人员管理" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1369,7 +1235,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="131">
           <caret line="12" column="6" lean-forward="false" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="6" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1405,7 +1270,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="506">
           <caret line="23" column="33" lean-forward="false" selection-start-line="23" selection-start-column="33" selection-end-line="23" selection-end-column="33" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1462,7 +1326,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="122">
           <caret line="1209" column="4" lean-forward="false" selection-start-line="1209" selection-start-column="4" selection-end-line="1209" selection-end-column="4" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1506,7 +1369,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="770">
           <caret line="35" column="48" lean-forward="false" selection-start-line="35" selection-start-column="48" selection-end-line="35" selection-end-column="48" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1554,7 +1416,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="418">
           <caret line="25" column="74" lean-forward="false" selection-start-line="25" selection-start-column="74" selection-end-line="25" selection-end-column="74" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1630,18 +1491,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/dishesMS/controller/DishesController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="173">
+        <state relative-caret-position="1606">
           <caret line="92" column="0" lean-forward="false" selection-start-line="92" selection-start-column="0" selection-end-line="92" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#2453#2454#0" expanded="false" />
+            <element signature="e#2518#2519#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/dishesMS/service/IStaffService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="12" column="4" lean-forward="false" selection-start-line="12" selection-start-column="4" selection-end-line="12" selection-end-column="4" />
+        <state relative-caret-position="132">
+          <caret line="8" column="3" lean-forward="true" selection-start-line="8" selection-start-column="3" selection-end-line="8" selection-end-column="3" />
           <folding />
         </state>
       </provider>
