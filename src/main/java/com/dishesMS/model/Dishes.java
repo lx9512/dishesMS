@@ -8,6 +8,7 @@ public class Dishes {
     private String name;
     private float price;
     private int acridity;
+    private String photoPath;
     private DishesVariety dishesVariety;
 
     public int getId() {
@@ -48,5 +49,13 @@ public class Dishes {
 
     public void setDishesVariety(DishesVariety dishesVariety) {
         this.dishesVariety = dishesVariety;
+    }
+
+    public String getPhotoPath() {
+        return photoPath;
+    }
+
+    public void setPhotoPath(String photoPath) {
+        this.photoPath = photoPath;
     }
 }

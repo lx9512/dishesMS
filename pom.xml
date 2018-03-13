@@ -17,6 +17,8 @@
         <!-- log4j日志文件管理包版本 -->
         <slf4j.version>1.7.7</slf4j.version>
         <log4j.version>1.2.17</log4j.version>
+        <!-- shiro 版本号 -->
+        <shiro.version>1.3.2</shiro.version>
     </properties>
 
     <dependencies>
@@ -90,6 +92,12 @@
             <artifactId>mybatis-spring</artifactId>
             <version>1.2.2</version>
         </dependency>
+        <!-- mybatis cglib 包 -->
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib</artifactId>
+            <version>3.2.5</version>
+        </dependency>
         <!-- 导入java ee jar 包 -->
         <dependency>
             <groupId>javax</groupId>
@@ -121,7 +129,18 @@
             <artifactId>log4j</artifactId>
             <version>${log4j.version}</version>
         </dependency>
-
+        <!-- shiro jar包  -->
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-all</artifactId>
+            <version>${shiro.version}</version>
+        </dependency>
+        <!-- ecache jar包 -->
+        <dependency>
+            <groupId>net.sf.ehcache</groupId>
+            <artifactId>ehcache</artifactId>
+            <version>2.10.3</version>
+        </dependency>
 
         <!-- 格式化对象，方便输出日志 -->
         <dependency>
@@ -188,8 +207,6 @@
             <artifactId>aspectjweaver</artifactId>
             <version>1.8.10</version>
         </dependency>
-
-
 
     </dependencies>
 
