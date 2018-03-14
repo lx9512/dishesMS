@@ -12,4 +12,5 @@ import java.util.List;
 public interface IRoleService {
     public void createRole(Role role);
     public List<Role> findAllRole();
+
 }

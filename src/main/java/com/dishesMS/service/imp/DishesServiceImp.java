@@ -12,7 +12,8 @@ import java.util.List;
  * Created by aa123 on 2018/2/26.
  */
 @Service
-public class DishesService implements IDishesService {
+public class DishesServiceImp implements IDishesService {
+
     @Resource
     private IDishesDAO dishesDAO;
 
@@ -20,7 +21,7 @@ public class DishesService implements IDishesService {
         dishesDAO.insertDishes(dishes);
     }
 
-    public List findAllDishes() {
+    public List<Dishes> findAllDishes() {
         return dishesDAO.selectAllDishes();
     }
 }

@@ -17,8 +17,10 @@ import java.util.List;
 @Controller
 @RequestMapping("dishes")
 public class DishesController {
+
     @Resource
     private IDishesService dishesService;
+
     @Resource
     private IDishesVarietyService dishesVarietyService;
 

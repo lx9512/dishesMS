@@ -3,9 +3,9 @@
 <mapper namespace="com.dishesMS.dao.IDishesDAO">
     <resultMap id="dishesResultMapper" type="com.dishesMS.model.Dishes">
         <id property="id" column="id"/>
-        <result property="name" column="name" />
-        <result property="price" column="price" />
-        <result property="acridity" column="acridity" />
+        <result property="name" column="name"/>
+        <result property="price" column="price"/>
+        <result property="acridity" column="acridity"/>
         <association property="dishesVariety" column="variety_id"
                      select="com.dishesMS.dao.IDishesVarietyDAO.selectDishesVarietyById"
                      javaType="com.dishesMS.model.DishesVariety"
@@ -16,8 +16,30 @@
         INSERT INTO dishes_info(name,price,acridity,variety_id) VALUES (#{name},#{price},#{acridity},#{dishesVariety.id})
     </insert>
 
-    <select id="selectAllDishes" resultMap="dishesResultMapper">
-        select * from dishes_info
+    <resultMap type="com.dishesMS.model.Dishes" id="userResultMap3">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="price" column="price"/>
+        <result property="acridity" column="acridity"/>
+        <association property="dishesVariety" javaType="com.dishesMS.model.DishesVariety">
+            <id property="id" column="var_id"/>
+            <result column="var_name" property="name"/>
+            <result property="describe" column="var_describe"/>
+        </association>
+    </resultMap>
+    <select id="selectAllDishes" resultMap="userResultMap3">
+        SELECT dishes_info.id,
+        dishes_info.name,
+        dishes_info.price,
+        dishes_info.acridity,
+        dishes_info.photo,
+        dishes_variety.describe var_describe,
+        dishes_variety.id var_id,
+        dishes_info.variety_id,
+        dishes_variety.name var_name
+        FROM
+        dishes_info JOIN
+        dishes_variety ON dishes_info.variety_id = dishes_variety.id
     </select>
 
     <select id="selectDishesByDishesVarietyId" parameterType="int" resultType="com.dishesMS.model.Dishes">

@@ -9,5 +9,5 @@ import java.util.List;
  */
 public interface IDishesService {
     public void saveDishes(Dishes dishes);
-    public List findAllDishes();
+    public List<Dishes> findAllDishes();
 }

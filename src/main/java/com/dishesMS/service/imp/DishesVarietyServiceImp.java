@@ -12,7 +12,7 @@ import java.util.List;
  * Created by aa123 on 2018/2/26.
  */
 @Service
-public class DishesVarietyService implements IDishesVarietyService {
+public class DishesVarietyServiceImp implements IDishesVarietyService {
     @Resource
     private IDishesVarietyDAO dishesVarietyDAO;
 

@@ -44,6 +44,6 @@
     </filter-mapping>
     
     <welcome-file-list>
-        <welcome-file>/WEB-INF/jsp/main.jsp</welcome-file>
+        <welcome-file>/WEB-INF/jsp/customer/cmain.jsp</welcome-file>
     </welcome-file-list>
 </web-app>
