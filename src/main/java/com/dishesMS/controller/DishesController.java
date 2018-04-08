@@ -26,8 +26,10 @@ import java.util.List;
 @RequestMapping("dishes")
 @Scope("prototype")
 public class DishesController {
+
     @Resource
     private IDishesService dishesService;
+
     @Resource
     private IDishesVarietyService dishesVarietyService;
 

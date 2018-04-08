@@ -38,16 +38,4 @@
     <select id="selectRoleById" parameterType="int" resultType="com.dishesMS.model.Role">
         SELECT * FROM role where id = #{id}
     </select>
-
-    <select id="selectRoleByTitle" parameterType="String" resultType="com.dishesMS.model.Role">
-        SELECT * FROM role WHERE title like #{title}
-    </select>
-
-    <update id="updateRole" parameterType="com.dishesMS.model.Role">
-        UPDATE role SET title = #{title},role.describe = #{describe} where id = #{id}
-    </update>
-
-    <delete id="deletRole" parameterType="int">
-        DELETE FROM role WHERE id = #{id}
-    </delete>
 </mapper>
