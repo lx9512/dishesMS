@@ -25,10 +25,30 @@
                     alert(data);
                     $("#photo").append("<img src='"+data+'?'+Math.random()+"' alt='this is photo'>");
                 },error:function (data) {
-                    alert("失败");
+                    alert("图片上传失败！");
             }
             }
         )
+    }
+
+    function loadPage(url) {
+        $.ajax(
+            {
+                type:"post",
+                //data:formData,
+                url:url,
+                async:false,
+                processData: false,
+                contentType: false,
+                success:function (data) {
+                    alert(data);
+                   // $("#photo").append("<img src='"+data+'?'+Math.random()+"' alt='this is photo'>");
+                },error:function (data) {
+                alert("页面加载失败！");
+            }
+            }
+        )
+
     }
 </script>
 <html>
@@ -37,12 +57,13 @@
 </head>
 <body>
 <h4>上传菜品图片</h4>
-<form action="/dishes/upImage" name="form2" method="post" enctype="multipart/form-data">
+<form name="form2" method="post" enctype="multipart/form-data">
     <input type="file" name="file">
     <input type="button" value="上传图片" onclick="uploadPhoto()">
 </form>
 <div id="photo">
-    <img src="../images/dishes/兴业银行招聘.png" alt="this is photo">
+<!--    <img src="../images/dishes/兴业银行招聘.png" alt="this is photo">  -->
+    <a onclick="loadPage('/dishes/jumpDishes')">加载菜品管理</a>
 
 </div>
 <h4>菜品信息填写</h4>

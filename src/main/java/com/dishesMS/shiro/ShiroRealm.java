@@ -45,6 +45,7 @@ public class ShiroRealm extends AuthenticatingRealm {
         return info;
     }
 
+    /*
     public static void main(String[] args)
     {
         String hashAlgorithmName = "MD5";
@@ -55,4 +56,6 @@ public class ShiroRealm extends AuthenticatingRealm {
         Object result = new SimpleHash(hashAlgorithmName,credentials,salt,hashIterations);
         System.out.println(result);
     }
+
+    */
 }

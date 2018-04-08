@@ -42,4 +42,16 @@ public class DishesService implements IDishesService {
         }
         return false;
     }
+
+    public boolean reviseDishes(Dishes dishes) {
+        try {
+            dishesDAO.updateDishes(dishes);
+            return true;
+        }catch (Exception e)
+        {
+            e.printStackTrace();
+            return false;
+        }
+
+    }
 }

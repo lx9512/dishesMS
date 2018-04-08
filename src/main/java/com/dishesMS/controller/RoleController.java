@@ -51,7 +51,7 @@ public class RoleController {
         return null;
     }
 
-    @RequestMapping("jumpRolePage")
+    @RequestMapping("jumpRole")
     public ModelAndView jumpRolePage()
     {
         ModelAndView modelAndView = new ModelAndView();

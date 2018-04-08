@@ -93,7 +93,7 @@ public class StaffController {
         }
     }
 
-    @RequestMapping("jumpStaffPage")
+    @RequestMapping("jumpStaff")
     public ModelAndView jumpStaffPage()
     {
         ModelAndView modelAndView = new ModelAndView();

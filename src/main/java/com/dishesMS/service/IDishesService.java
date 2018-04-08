@@ -12,4 +12,5 @@ public interface IDishesService {
     public List findAllDishes();
     public Dishes findDishesById(int id);
     public boolean removeDishes(int id);
+    public boolean reviseDishes(Dishes dishes);
 }
