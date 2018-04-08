@@ -12,7 +12,7 @@
 </head>
 <body>
 
-<form>
+<form action="/dishesVariety/add">
     <label>菜品类型名</label>
     <input type="text" name="name"><br>
     <label>描述</label>

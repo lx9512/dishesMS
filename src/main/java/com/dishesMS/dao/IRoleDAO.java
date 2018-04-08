@@ -14,4 +14,8 @@ public interface IRoleDAO {
 
     public int saveRole(Role role);
     public List selectAll();
+    public Role selectRoleByTitle(String title);
+    public void updateRole(Role role);
+    public void deleteRole(int id);
+    public Role selectRoleById(int id);
 }

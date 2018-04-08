@@ -12,5 +12,7 @@ import java.util.List;
 public interface IDishesDAO {
     public void insertDishes(Dishes dishes);
     public List<Dishes> selectAllDishes();
-    public List<Dishes> selectAllByDescribe(String describe);
+    public Dishes selectDishesById(int id);
+    public Dishes selectDishesByName(String name);
+    public void deleteDishes(int id);
 }

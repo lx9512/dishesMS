@@ -1,9 +1,11 @@
 package com.dishesMS.model;
 
+import java.io.Serializable;
+
 /**
  * Created by aa123 on 2018/2/23.
  */
-public class Staff {
+public class Staff implements Serializable {
 
     private int id;
     private String name;        //姓名

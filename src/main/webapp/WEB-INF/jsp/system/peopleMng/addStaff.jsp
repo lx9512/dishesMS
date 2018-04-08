@@ -17,7 +17,7 @@
 <body>
 
     <form action="/staff/add">
-        <label>账号</label>
+        <label>员工号</label>
         <input type="text" id="account" name="account" /><br>
         <label>密码</label>
         <input type="password" id="password" name="password" /><br>
