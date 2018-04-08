@@ -9,7 +9,13 @@
 <link rel="stylesheet" href="http://apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.min.css">
 <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-<div class="text">
+<html>
+<body>
+<div style="width: 100%">
+    <jsp:include page="/customerJump/getTop"></jsp:include>
+</div>
+<div class="panel panel-default text">
     <h1 class="text">This your like but nothing now</h1>
 </div>
+</body>
+</html>

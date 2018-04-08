@@ -10,10 +10,17 @@
 <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-<div class="center-pill" style="width: 200px">
+<html>
+<body>
+<div style="width: 100%">
+    <jsp:include page="/customerJump/getTop"></jsp:include>
+</div>
+<div class="panel panel-default center-pill center" style="width: 200px">
     <div class="text-input">
         <input type="password" name="oldPwd">
         <input type="password" name="newPwd">
         <input type="password" name="sNewPwd">
     </div>
 </div>
+</body>
+</html>

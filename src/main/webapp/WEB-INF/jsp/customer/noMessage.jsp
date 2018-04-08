@@ -9,7 +9,13 @@
 <link rel="stylesheet" href="http://apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.min.css">
 <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 <script src="http://apps.bdimg.com/libs/jquery.cookie/1.4.1/jquery.cookie.min.js"></script>
-
+<html>
+<body>
+<div style="width: 100%">
+    <jsp:include page="/customerJump/getTop"></jsp:include>
+</div>
 <div class="text">
     <h1 class="text"> DishesMS  Welcome</h1>
 </div>
+</body>
+</html>
