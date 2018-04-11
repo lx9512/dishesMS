@@ -20,10 +20,10 @@
     <insert id="insertDishesVariety" parameterType="com.dishesMS.model.DishesVariety" useGeneratedKeys="true" keyProperty="id">
         <choose>
             <when test="describe != null">
-                INSERT INTO dishes_variety(name,describe) VALUES(#{name},#{describe})
+                INSERT INTO dishes_variety(dishes_variety.name,dishes_variety.describe) VALUES(#{name},#{describe})
             </when>
             <when test="describe == null">
-                INSERT INTO dishes_variety(name) VALUES(#{name})
+                INSERT INTO dishes_variety(dishes_variety.name) VALUES(#{name})
             </when>
         </choose>
     </insert>
@@ -35,4 +35,16 @@
     <select id="selectAllDishesVariety" resultType="com.dishesMS.model.DishesVariety">
         select * from dishes_variety
     </select>
+    
+    <select id="selectDishesVarietyByName" resultType="com.dishesMS.model.DishesVariety">
+        select * from dishes_variety WHERE name like #{name};
+    </select>
+
+    <update id="updateDishesVariety" parameterType="com.dishesMS.model.DishesVariety">
+        UPDATE dishes_variety SET name=#{name},dishes_variety.describe=#{describe} where id=#{id}
+    </update>
+
+    <delete id="deleteDishesVariety" parameterType="int">
+        DELETE FROM dishes_variety where id=#{id}
+    </delete>
 </mapper>

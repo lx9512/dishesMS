@@ -10,7 +10,9 @@ import java.util.List;
  */
 
 public interface IRoleService {
-    public void createRole(Role role);
+    public boolean createRole(Role role);
     public List<Role> findAllRole();
-
+    public boolean reviseRole(Role role);
+    public boolean removeRole(int id);
+    public Role findRoleById(int id);
 }

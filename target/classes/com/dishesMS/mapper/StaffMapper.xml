@@ -20,11 +20,32 @@
         VALUES (#{account},#{password},#{name},#{gender},#{idCard},#{tel},#{email},#{role.id})
     </insert>
 
-    <select id="selectStaffByRoleId" parameterType="int" resultType="com.dishesMS.model.Dishes">
-        select * forn staff where role_id = #{roleId}
+    <select id="selectStaffByRoleId" parameterType="int" resultType="com.dishesMS.model.Staff">
+        select * FROM staff where role_id = #{id}
     </select>
 
     <select id="selectAll" resultMap="staffResultMap">
         SELECT * FROM staff
     </select>
+
+    <select id="selectStaffByAccount" parameterType="String" resultType="com.dishesMS.model.Staff">
+        SELECT * FROM staff WHERE account LIKE #{account}
+    </select>
+
+    <select id="selectStaffByAccountOrIdCard" resultType="com.dishesMS.model.Staff">
+        SELECT * FROM staff WHERE account LIKE #{account} or idCard like #{idCard}
+    </select>
+
+    <select id="selectStaffById" parameterType="int" resultType="com.dishesMS.model.Staff">
+        SELECT * FROM staff where id = #{id}
+    </select>
+
+    <update id="updateStaff" parameterType="com.dishesMS.model.Staff">
+        UPDATE staff SET name = #{name},gender = #{gender},idCard = #{idCard},tel = #{tel},email = #{email},
+        account = #{account},password = #{password},role_id = #{role.id} WHERE id = #{id}
+    </update>
+
+    <delete id="deleteStaff" parameterType="int">
+        DELETE FROM staff WHERE id = #{id}
+    </delete>
 </mapper>

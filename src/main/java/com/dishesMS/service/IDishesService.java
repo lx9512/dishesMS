@@ -12,4 +12,8 @@ public interface IDishesService {
     public void saveDishes(Dishes dishes);
     public List<Dishes> findAllDishes();
     public List<Dishes> findAllByDescribe(String describe);
+    public boolean saveDishes(Dishes dishes);
+    public List findAllDishes();
+    public Dishes findDishesById(int id);
+    public boolean removeDishes(int id);
 }

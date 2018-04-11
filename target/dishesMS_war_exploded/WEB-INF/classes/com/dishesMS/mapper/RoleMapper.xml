@@ -5,7 +5,7 @@
         <id property="id" column="id" />
         <result property="title" column="title" />
         <result property="describe" column="describe" />
-        <collection property="staffList" javaType="ArrayList" column="id" ofType="com.dishesMS.model.Dishes"
+        <collection property="staffList" javaType="ArrayList" column="id" ofType="com.dishesMS.model.Role"
                     select="com.dishesMS.dao.IStaffDAO.selectStaffByRoleId"
                     fetchType="lazy">
             <id property="id" column="id" />
