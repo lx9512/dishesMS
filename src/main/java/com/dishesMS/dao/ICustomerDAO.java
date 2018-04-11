@@ -1,7 +1,9 @@
 package com.dishesMS.dao;
 
 import com.dishesMS.model.Customer;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface ICustomerDAO {
     int deleteByPrimaryKey(Integer id);
 

@@ -9,8 +9,12 @@
 <link rel="stylesheet" href="http://apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.min.css">
 <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 <script src="http://apps.bdimg.com/libs/jquery.cookie/1.4.1/jquery.cookie.min.js"></script>
-
-<div class="center-block" style="width: 200px;">
+<html>
+<body>
+<div style="width: 100%">
+    <jsp:include page="/customerJump/getTop"></jsp:include>
+</div>
+<div class="panel panel-default center-block" style="width: 200px;">
 
     <div class="form-group">
         <label class="sr-only" for="account">账户名：</label>
@@ -35,3 +39,5 @@
     </div>
     <%--<input type="submit" value="保存">--%>
 </div>
+</body>
+</html>

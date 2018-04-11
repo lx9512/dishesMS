@@ -7,6 +7,7 @@ public class Dishes {
     private int id;
     private String name;
     private float price;
+    private int varietyId;
     private int acridity;
     private DishesVariety dishesVariety;
 
@@ -48,5 +49,13 @@ public class Dishes {
 
     public void setDishesVariety(DishesVariety dishesVariety) {
         this.dishesVariety = dishesVariety;
+    }
+
+    public int getVarietyId() {
+        return varietyId;
+    }
+
+    public void setVarietyId(int varietyId) {
+        this.varietyId = varietyId;
     }
 }

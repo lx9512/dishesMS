@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dishesMS.dao.IOrderMainDao" >
+  <resultMap id="BaseResultMap" type="com.dishesMS.model.OrderMain" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="customer_id" property="customerId" jdbcType="INTEGER" />
+    <result column="date" property="date" jdbcType="TIMESTAMP" />
+    <result column="table_id" property="tableId" jdbcType="INTEGER" />
+    <result column="money" property="money" jdbcType="INTEGER" />
+    <result column="order_status" property="orderStatus" jdbcType="INTEGER" />
+  </resultMap>
+
+  <resultMap id="OrderResultMap" type="com.dishesMS.model.OrderMain" extends="BaseResultMap">
+    <collection property="orderInfo" javaType="list" ofType="com.dishesMS.model.Order">
+      <id column="id" property="id" jdbcType="INTEGER" />
+      <result column="dishesInfo_id" property="dishesinfoId" jdbcType="INTEGER" />
+      <result column="order_id" property="orderId" jdbcType="INTEGER" />
+      <result column="number" property="number" jdbcType="INTEGER" />
+      <result column="untreate_status" property="untreateStatus" jdbcType="INTEGER"/>
+      <result column="complete_status" property="completeStatus" jdbcType="INTEGER"/>
+    </collection>
+  </resultMap>
+
+  <select id="selectByCustomerId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select * from orderM where customer_id = #{customerId,jdbcType=INTEGER} AND order_status=0
+  </select>
+
+<select id="selectAllOrder" resultMap="BaseResultMap">
+  select * from orderM
+</select>
+
+<select id="selectDetailOrderByCustomerId" resultMap="OrderResultMap" parameterType="java.lang.Integer">
+  SELECT
+orderM.id,
+orderM.customer_id,
+orderM.date,
+orderM.table_id,
+orderM.money,
+orderM.order_status,
+order_info.id,
+order_info.dishesInfo_id,
+order_info.order_id,
+order_info.number,
+order_info.untreate_status,
+order_info.complete_status
+FROM
+orderM
+left JOIN order_info ON orderM.id = order_info.order_id
+WHERE customer_id = #{customerId,jdbcType=INTEGER} AND order_status=0
+</select>
+  <select id="selectAllOldByCustomerId" resultMap="OrderResultMap" parameterType="java.lang.Integer">
+    SELECT
+    orderM.id,
+    orderM.customer_id,
+    orderM.date,
+    orderM.table_id,
+    orderM.money,
+    orderM.order_status,
+    order_info.id,
+    order_info.dishesInfo_id,
+    order_info.order_id,
+    order_info.number,
+    order_info.untreate_status,
+    order_info.complete_status
+    FROM
+    orderM
+    left JOIN order_info ON orderM.id = order_info.order_id
+    WHERE customer_id = #{customerId,jdbcType=INTEGER} AND order_status=1
+  </select>
+
+
+  <sql id="Base_Column_List" >
+    id, custmor_id, date, table_id, money,order_status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from orderM
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from orderM
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dishesMS.model.OrderMain" >
+    insert into orderM (id, customer_id, date,
+      table_id, money,order_status)
+    values (#{id,jdbcType=INTEGER}, #{customerId,jdbcType=INTEGER}, #{date,jdbcType=TIMESTAMP},
+      #{tableId,jdbcType=INTEGER}, #{money,jdbcType=INTEGER},#{orderStatus,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dishesMS.model.OrderMain" >
+    insert into orderM
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="customerId != null" >
+        customer_id,
+      </if>
+      <if test="date != null" >
+        date,
+      </if>
+      <if test="tableId != null" >
+        table_id,
+      </if>
+      <if test="money != null" >
+        money,
+      </if>
+      <if test="orderStatus != null" >
+        orderStatus,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="customerId != null" >
+        #{customerId,jdbcType=INTEGER},
+      </if>
+      <if test="date != null" >
+        #{date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tableId != null" >
+        #{tableId,jdbcType=INTEGER},
+      </if>
+      <if test="money != null" >
+        #{money,jdbcType=INTEGER},
+      </if>
+      <if test="orderStatus != null" >
+        #{orderStatus,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dishesMS.model.OrderMain" >
+    update orderM
+    <set >
+      <if test="customerId != null" >
+        customer_id = #{customerId,jdbcType=INTEGER},
+      </if>
+      <if test="date != null" >
+        date = #{date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tableId != null" >
+        table_id = #{tableId,jdbcType=INTEGER},
+      </if>
+      <if test="money != null" >
+        money = #{money,jdbcType=INTEGER},
+      </if>
+      <if test="orderStatus != null" >
+        order_status = #{orderStatus,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dishesMS.model.OrderMain" >
+    update orderM
+    set customer_id = #{customerId,jdbcType=INTEGER},
+      date = #{date,jdbcType=TIMESTAMP},
+      table_id = #{tableId,jdbcType=INTEGER},
+      money = #{money,jdbcType=INTEGER},
+       order_status = #{orderStatus,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

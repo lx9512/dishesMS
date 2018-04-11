@@ -24,4 +24,8 @@ public class DishesServiceImp implements IDishesService {
     public List<Dishes> findAllDishes() {
         return dishesDAO.selectAllDishes();
     }
+
+    public List<Dishes> findAllByDescribe(String describe) {
+        return dishesDAO.selectAllByDescribe(describe);
+    }
 }

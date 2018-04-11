@@ -29,6 +29,28 @@
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
+    <!-- 静态资源访问-->
+    <!--<servlet-mapping>-->
+        <!--<servlet-name>default</servlet-name>-->
+        <!--<url-pattern>*.css</url-pattern>-->
+    <!--</servlet-mapping>-->
+    <!--<servlet-mapping>-->
+        <!--<servlet-name>default</servlet-name>-->
+        <!--<url-pattern>*.js</url-pattern>-->
+    <!--</servlet-mapping>-->
+    <!--<servlet-mapping>-->
+        <!--<servlet-name>default</servlet-name>-->
+        <!--<url-pattern>*.gif</url-pattern>-->
+    <!--</servlet-mapping>-->
+    <!--<servlet-mapping>-->
+        <!--<servlet-name>default</servlet-name>-->
+        <!--<url-pattern>*.png</url-pattern>-->
+    <!--</servlet-mapping>-->
+    <!--<servlet-mapping>-->
+        <!--<servlet-name>default</servlet-name>-->
+        <!--<url-pattern>*.jpg</url-pattern>-->
+    <!--</servlet-mapping>-->
+
     <!-- 编码过滤器 -->
     <filter>
         <filter-name>characterEncodingFilter</filter-name>
@@ -44,6 +66,6 @@
     </filter-mapping>
     
     <welcome-file-list>
-        <welcome-file>/WEB-INF/jsp/customer/cmain.jsp</welcome-file>
+        <welcome-file>/WEB-INF/jsp/moban/index.jsp</welcome-file>
     </welcome-file-list>
 </web-app>
