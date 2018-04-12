@@ -3,7 +3,7 @@
 <mapper namespace="com.dishesMS.dao.ITableDAO">
     
     <select id="selectTableByAN" resultType="com.dishesMS.model.Table">
-        SELECT * from table_info where area_name like #{areaName} and number like #{number}
+        SELECT * from table_info where areaName like #{areaName} and table_info.number like #{number}
     </select>
 
     <select id="selectTable" resultType="com.dishesMS.model.Table">
@@ -15,17 +15,17 @@
     </select>
 
     <insert id="insertTable" parameterType="com.dishesMS.model.Table" keyProperty="id" useGeneratedKeys="true">
-        insert into table_info(area_name,number,people_num,describe)
-        VALUES (#{areaName},#{number},#{peopleNum},#{descibe})
+        insert into table_info(areaName,table_info.number,peopleNum,table_info.describe,status)
+        VALUES (#{areaName},#{number},#{peopleNum},#{describe},#{status})
     </insert>
 
     <update id="updateTable" parameterType="com.dishesMS.model.Table">
-        UPDATE table_info SET  areaName = #{table.areaName},number = #{table.number},people_num = #{table.peopleNum},
-        status = #{table.status},describe = #{table.describe} where id like #{table.id}
+        UPDATE table_info SET  areaName = #{areaName},table_info.number = #{number},peopleNum = #{peopleNum},
+        status = #{status},table_info.describe = #{describe} where id = #{id}
     </update>
 
     <delete id="deleteTable" parameterType="int">
-        delete * from table_info where id like #{id}
+        delete from table_info where id = #{id}
     </delete>
 
 

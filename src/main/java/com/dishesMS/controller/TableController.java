@@ -37,7 +37,7 @@ public class TableController {
     @RequestMapping("add")   //新增桌台
     public String addTable(Table table)
     {
-        if(null != tableService.findTableByAN(table))
+        if(null == tableService.findTableByAN(table))
         {
             tableService.addTable(table);
         }else{
@@ -57,7 +57,7 @@ public class TableController {
         Table table = new Table(areaName,Integer.toString(startNum),peopleNum,describe);
         int start = startNum;
         do{
-            if(null != tableService.findTableByAN(table)) //判断桌台号是否已经存在
+            if(null == tableService.findTableByAN(table)) //判断桌台号是否已经存在
             {
                 tableService.addTable(table);  //新增桌台
                 start++;

@@ -62,4 +62,26 @@ public class StaffServiceImp implements IStaffService{
         return true;
     }
 
+    public boolean reviseStaffPassword(String account, String password) {
+        try{
+            staffDAO.updateStaffPassword(account,password);
+        }catch(Exception e)
+        {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+    public boolean reviseStaffByAccount(Staff staff) {
+        try{
+            staffDAO.updateStaffByAccount(staff);
+        }catch (Exception e)
+        {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
 }

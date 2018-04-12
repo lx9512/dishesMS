@@ -14,4 +14,6 @@ public interface IStaffService {
     public Staff findStaffById(int id);
     public boolean reviseStaff(Staff staff);
     public boolean removeStaff(int id);
+    public boolean reviseStaffPassword(String account,String password);
+    public boolean reviseStaffByAccount(Staff staff);
 }

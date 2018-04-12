@@ -18,8 +18,15 @@
 </head>
 <body>
 
+<!--
+
 <a href="/table/jumpAdd" class="btn btn-primary btn-lg" data-target="#myModal" data-toggle="modal">新建桌台</a>
 <a class="btn btn-primary btn-lg" href="/table/jumpBatchAdd" data-target="#myModal" data-toggle="modal">批量新建桌台</a>
+
+-->
+
+<a href="/table/jumpAdd">新增桌台号</a>
+<a href="/table/jumpBatchAdd">批量新增桌台号</a>
 
 <table>
     <thead>
@@ -34,12 +41,12 @@
     <tbody>
     <c:forEach var="table" items="${tables}">
         <tr>
-            <td>${table.areaName}+${table.number}</td>
+            <td>${table.areaName}${table.number}</td>
             <td>${table.peopleNum}</td>
             <td>${table.status}</td>
             <td>${table.describe}</td>
             <td>
-                <a href="/table/edit?id=${table.id}">修改</a>
+                <a href="/table/jumpEdit?id=${table.id}">修改</a>
                 <a href="/table/drop?id=${table.id}">删除</a>
             </td>
         </tr>

@@ -20,4 +20,6 @@ public interface IStaffDAO {
     public Staff selectStaffById(int id);
     public void updateStaff(Staff staff);
     public void deleteStaff(int id);
+    public void updateStaffPassword(@Param("account") String account,@Param("password") String password);
+    public void updateStaffByAccount(Staff staff);
 }

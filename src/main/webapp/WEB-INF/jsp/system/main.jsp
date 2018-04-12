@@ -137,7 +137,7 @@
          */
 
         .main {
-            padding: 70px;
+            padding: 20px;
         }
         @media (min-width: 768px) {
             .main {
@@ -195,9 +195,9 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">登录</a> </li>
-                    <li><a href="#">注册</a> </li>
-                    <li><a href="#"></a> </li>
+                    <li><a href="/staff/jumpEditSelfInfo">编辑个人资料</a> </li>
+                    <li><a href="/staff/jumpUpdatePassword">修改密码</a> </li>
+                    <li><a href="/staff/logout">退出</a> </li>
                     <li><a href="#"></a> </li>
                 </ul>
             </div>
@@ -221,8 +221,8 @@
                 </ul>
                 <div>菜品管理</div>
                 <ul>
-                    <li><a href="/dishes/jumpDishes">菜品信息</a> </li>
-                    <li><a href="/dishesVariety/jumpDishesVariety">类别管理</a> </li>
+                    <li><a onclick="loadPage('/dishes/jumpDishes','main')">菜品信息</a> </li>
+                    <li><a onclick="loadPage('/dishesVariety/jumpDishesVariety','main')">菜品类别</a> </li>
                 </ul>
                 <div>订单管理</div>
                 <ul>
@@ -231,19 +231,20 @@
                 </ul>
                 <div>桌台管理</div>
                 <ul>
-                    <li><a href="#"></a> </li>
+                    <li><a onclick="loadPage('/table/jumpTable','main')">桌台信息</a> </li>
+                    <li><a onclick="loadPage('/table/makeQRCode','main')">二维码配置</a></li>
                 </ul>
                 <div>服务面板</div>
                 <div class="nav nav-sidebar">人员管理</div>
                 <ul>
                     <li class="active"><a href="#">会员信息</a> </li>
-                    <li class=""><a href="/staff/jumpStaffPage">员工信息</a> </li>
-                    <li class=""><a href="/role/jumpRolePage">职位管理</a> </li>
+                    <li class=""><a onclick="loadPage('/staff/jumpStaff','main')">员工信息</a> </li>
+                    <li class=""><a onclick="loadPage('/role/jumpRole','main')">职位信息</a> </li>
                 </ul>
                 <div>数据统计</div>
 
             </div>
-            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" id="main">
                 <h1 class="page-header">内容</h1>
             </div>
 
@@ -268,6 +269,5 @@
             </div>
         </div>
     </div>
-
 </body>
 </html>

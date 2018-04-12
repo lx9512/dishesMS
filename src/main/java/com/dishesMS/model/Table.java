@@ -8,9 +8,19 @@ public class Table {
     private String areaName;  //区域名
     private String number;    //序号
     private int peopleNum;    //桌台容纳人数
-    private int status;       //是否在用状态
-    private String QRCodePath;  //桌台二维码路径
+    private int status = 0;       //是否在用状态,默认为0
+    //private String QRCodePath;  //桌台二维码路径
     private String describe;    //桌台描述
+
+    public Table(int id,String areaName,String number,int peopleNum,int status,String describe)
+    {
+        this.id = id;
+        this.areaName = areaName;
+        this.number = number;
+        this.peopleNum = peopleNum;
+        this.describe = describe;
+        this.status = status;
+    }
 
     public Table(String areaName,String number,int peopleNum,String describe)
     {
@@ -19,6 +29,7 @@ public class Table {
         this.peopleNum = peopleNum;
         this.describe = describe;
     }
+
     public Table()
     {
         super();
@@ -62,14 +73,6 @@ public class Table {
 
     public void setStatus(int status) {
         this.status = status;
-    }
-
-    public String getQRCodePath() {
-        return QRCodePath;
-    }
-
-    public void setQRCodePath(String QRCodePath) {
-        this.QRCodePath = QRCodePath;
     }
 
     public String getDescribe() {

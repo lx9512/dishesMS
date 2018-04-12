@@ -11,7 +11,8 @@
     <title>编辑桌台</title>
 </head>
 <body>
-<form action="/table/add">
+<form action="/table/edit">
+    <input name = "id" value="${table.id}" hidden>
     区域名称：
     <select name="areaName">
         <option value="" selected = "selected">请选择</option>
@@ -21,13 +22,13 @@
         <option value="D">D</option>
     </select><br>
     桌台号：
-    <input type="text" name="number" value="">
+    <input type="text" name="number" value="${table.number}">
     <br>
     容客人数：
-    <input type="text" name="peopleNum" value="">
+    <input type="text" name="peopleNum" value="${table.peopleNum}">
     <br>
     描述：
-    <input type="text" name="describe" value="">
+    <input type="text" name="describe" value="${table.describe}">
     <br>
     <input type="submit">
 </form>

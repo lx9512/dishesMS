@@ -34,6 +34,15 @@ public class Staff implements Serializable {
         this.role = new Role();
         this.role.setId(roleId);
     }*/
+    public Staff(String account,String name,String gender,String idCard,String tel,String email)
+    {
+        this.account = account;
+        this.name = name;
+        this.gender = gender;
+        this.idCard = idCard;
+        this.tel = tel;
+        this.email = email;
+    }
 
     public int getId() {
         return id;
