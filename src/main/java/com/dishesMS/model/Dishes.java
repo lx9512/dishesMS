@@ -7,8 +7,8 @@ public class Dishes {
     private int id;
     private String name;
     private float price;
+    private int varietyId;
     private int acridity;
-    private String photoPath;
     private DishesVariety dishesVariety;
 
     public int getId() {
@@ -51,11 +51,11 @@ public class Dishes {
         this.dishesVariety = dishesVariety;
     }
 
-    public String getPhotoPath() {
-        return photoPath;
+    public int getVarietyId() {
+        return varietyId;
     }
 
-    public void setPhotoPath(String photoPath) {
-        this.photoPath = photoPath;
+    public void setVarietyId(int varietyId) {
+        this.varietyId = varietyId;
     }
 }

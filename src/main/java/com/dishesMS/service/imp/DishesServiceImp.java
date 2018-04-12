@@ -25,8 +25,12 @@ public class DishesService implements IDishesService {
         return false;
     }
 
-    public List findAllDishes() {
+    public List<Dishes> findAllDishes() {
         return dishesDAO.selectAllDishes();
+    }
+
+    public List<Dishes> findAllByDescribe(String describe) {
+        return dishesDAO.selectAllByDescribe(describe);
     }
 
     public Dishes findDishesById(int id) {

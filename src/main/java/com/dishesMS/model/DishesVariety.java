@@ -9,7 +9,7 @@ public class DishesVariety {
     private int id;
     private String name;
     private String describe;
-    private List<Dishes> dishesList;
+
 
     public DishesVariety()
     {
@@ -44,11 +44,4 @@ public class DishesVariety {
         this.describe = describe;
     }
 
-    public List<Dishes> getDishesList() {
-        return dishesList;
-    }
-
-    public void setDishesList(List<Dishes> dishesList) {
-        this.dishesList = dishesList;
-    }
 }

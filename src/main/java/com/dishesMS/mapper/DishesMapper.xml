@@ -1,60 +1,161 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.dishesMS.dao.IDishesDAO">
-    <resultMap id="dishesResultMapper" type="com.dishesMS.model.Dishes">
-        <id property="id" column="id"/>
-        <result property="name" column="name" />
-        <result property="price" column="price" />
-        <result property="acridity" column="acridity" />
-        <association property="dishesVariety" column="variety_id"
-                     select="com.dishesMS.dao.IDishesVarietyDAO.selectDishesVarietyById"
-                     javaType="com.dishesMS.model.DishesVariety"
-        />
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dishesMS.dao.IDishesDAO" >
+  <resultMap id="BaseResultMap" type="com.dishesMS.model.Dishes" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="variety_id" property="varietyId" jdbcType="INTEGER" />
+    <result column="price" property="price" jdbcType="REAL" />
+    <result column="acridity" property="acridity" jdbcType="SMALLINT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.dishesMS.model.Dishes" extends="BaseResultMap" >
+    <result column="photo" property="photo" jdbcType="VARBINARY" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, variety_id, price, acridity
+  </sql>
+  <sql id="Blob_Column_List" >
+    photo
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from dishes_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from dishes_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dishesMS.model.Dishes" >
+    insert into dishes_info (id, name, variety_id, 
+      price, acridity, photo
+      )
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{varietyId,jdbcType=INTEGER}, 
+      #{price,jdbcType=REAL}, #{acridity,jdbcType=SMALLINT}, #{photo,jdbcType=VARBINARY}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.dishesMS.model.Dishes" >
+    insert into dishes_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="varietyId != null" >
+        variety_id,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="acridity != null" >
+        acridity,
+      </if>
+      <if test="photo != null" >
+        photo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="varietyId != null" >
+        #{varietyId,jdbcType=INTEGER},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=REAL},
+      </if>
+      <if test="acridity != null" >
+        #{acridity,jdbcType=SMALLINT},
+      </if>
+      <if test="photo != null" >
+        #{photo,jdbcType=VARBINARY},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dishesMS.model.Dishes" >
+    update dishes_info
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="varietyId != null" >
+        variety_id = #{varietyId,jdbcType=INTEGER},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=REAL},
+      </if>
+      <if test="acridity != null" >
+        acridity = #{acridity,jdbcType=SMALLINT},
+      </if>
+      <if test="photo != null" >
+        photo = #{photo,jdbcType=VARBINARY},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+   <resultMap type="com.dishesMS.model.Dishes" id="userResultMap" extends="BaseResultMap">
+        <association property="dishesVariety" javaType="com.dishesMS.model.DishesVariety">
+            <id property="id" column="var_id"/>
+            <result column="var_name" property="name"/>
+            <result property="describe" column="var_describe"/>
+        </association>
     </resultMap>
-
-    <insert id="insertDishes" parameterType="com.dishesMS.model.Dishes" useGeneratedKeys="true" keyProperty="id">
+	<insert id="insertDishes" parameterType="com.dishesMS.model.Dishes" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO dishes_info(name,price,acridity,variety_id) VALUES (#{name},#{price},#{acridity},#{dishesVariety.id})
     </insert>
-
-    <select id="selectAllDishes" resultMap="dishesResultMapper">
-        select * from dishes_info
+    <select id="selectAllDishes" resultMap="userResultMap">
+        SELECT dishes_info.id,
+        dishes_info.name,
+        dishes_info.price,
+        dishes_info.acridity,
+        dishes_info.photo,
+        dishes_variety.describe var_describe,
+        dishes_variety.id var_id,
+        dishes_info.variety_id,
+        dishes_variety.name var_name
+        FROM
+        dishes_info JOIN
+        dishes_variety ON dishes_info.variety_id = dishes_variety.id
     </select>
-
-    <select id="selectDishesByDishesVarietyId" parameterType="int" resultType="com.dishesMS.model.Dishes">
-        select * from dishes_info where variety_id = #{dishesVarietyId}
-    </select>
-
-    <select id="selectDishesById" resultType="com.dishesMS.model.Dishes">
-        SELECT * form dishes_info where id = #{id}
-    </select>
-
-    <select id="selectDishesByName" resultType="com.dishesMS.model.Dishes">
-        select * from dishes_info where name LIKE #{name}
-    </select>
-
-    <update id="updateDishes" parameterType="com.dishesMS.model.Dishes">
-        UPDATE dishes_info
-        <set>
-            <if test="name != null">
-                name=#{name},
-            </if>
-            <if test="dishesVariety.id != null">
-                variety_id = #{dishesVariety.id},
-            </if>
-            <if test="price != null">
-                price = #{price},
-            </if>
-            <if test="acridity != null">
-                acridity = #{acridity},
-            </if>
-            <if test="photoPath != null">
-                photo_path = #{photoPath},
-            </if>
-        </set>
-        where id = #{id}
-    </update>
-
-    <delete id="deleteDishes" parameterType="int">
-        DELETE FROM dishes_info where id = #{id}
-    </delete>
+  <select id="selectAllByDescribe" resultMap="userResultMap" parameterType="java.lang.String">
+    SELECT dishes_info.id,
+    dishes_info.name,
+    dishes_info.price,
+    dishes_info.acridity,
+    dishes_info.photo,
+    dishes_variety.describe var_describe,
+    dishes_variety.id var_id,
+    dishes_info.variety_id,
+    dishes_variety.name var_name
+    FROM
+    dishes_info JOIN
+    dishes_variety ON dishes_info.variety_id = dishes_variety.id
+    where dishes_variety.`describe` = #{describe,jdbcType=VARCHAR};
+  </select>
+  
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.dishesMS.model.Dishes" >
+    update dishes_info
+    set name = #{name,jdbcType=VARCHAR},
+      variety_id = #{varietyId,jdbcType=INTEGER},
+      price = #{price,jdbcType=REAL},
+      acridity = #{acridity,jdbcType=SMALLINT},
+      photo = #{photo,jdbcType=VARBINARY}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dishesMS.model.Dishes" >
+    update dishes_info
+    set name = #{name,jdbcType=VARCHAR},
+      variety_id = #{varietyId,jdbcType=INTEGER},
+      price = #{price,jdbcType=REAL},
+      acridity = #{acridity,jdbcType=SMALLINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
 </mapper>

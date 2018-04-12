@@ -137,7 +137,7 @@
          */
 
         .main {
-            padding: 20px;
+            padding: 70px;
         }
         @media (min-width: 768px) {
             .main {
@@ -170,6 +170,17 @@
         }
     </style>
 </head>
+
+<%--完成页面跳转--%>
+<script >
+    function loadUrl( url ){
+        //alert( url);
+        $("#mainDiv").load( url);
+        return false;
+    }
+</script>
+
+
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid">
@@ -186,7 +197,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="#">登录</a> </li>
                     <li><a href="#">注册</a> </li>
-                    <li><a href="/staff/logout">退出</a> </li>
+                    <li><a href="#"></a> </li>
                     <li><a href="#"></a> </li>
                 </ul>
             </div>
@@ -196,10 +207,22 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-3 col-md-2 sidebar">
+                <div>个人中心</div>
+                <ul>
+                    <li><a href="javascript:void(0)" onclick="loadUrl('/customer/jumpToCustomer')">个人信息</a> </li>
+                    <li><a href="javascript:void(0)" onclick="loadUrl('/customer/jumpToTest')">消费记录</a> </li>
+                    <%--获取消费记录以消费ID为为准 消费ID为日期加消费者ID加餐位加时间段代码（早餐 0 中餐 1 晚餐 2 夜宵 3）--%>
+                </ul>
+                <div>点餐</div>
+                <ul>
+                    <li><a href="javascript:void(0)" onclick="loadUrl('/customer/jumpToTest')">查看美食</a> </li>
+                    <li><a href="javascript:void(0)" onclick="loadUrl('/customer/jumpToTest')">消灭美食</a> </li>
+                    <%--生成消费ID 锁定餐位 获得结账操作--%>
+                </ul>
                 <div>菜品管理</div>
                 <ul>
-                    <li><a onclick="loadPage('/dishes/jumpDishes','main')">菜品信息</a> </li>
-                    <li><a onclick="loadPage('/dishesVariety/jumpDishesVariety','main')">菜品类别</a> </li>
+                    <li><a href="/dishes/jumpDishes">菜品信息</a> </li>
+                    <li><a href="/dishesVariety/jumpDishesVariety">类别管理</a> </li>
                 </ul>
                 <div>订单管理</div>
                 <ul>
@@ -208,20 +231,19 @@
                 </ul>
                 <div>桌台管理</div>
                 <ul>
-                    <li><a onclick="loadPage('/table/jumpTable','main')">桌台信息</a> </li>
-                    <li><a onclick="loadPage('/table/makeQRCode','main')">二维码配置</a></li>
+                    <li><a href="#"></a> </li>
                 </ul>
                 <div>服务面板</div>
                 <div class="nav nav-sidebar">人员管理</div>
                 <ul>
                     <li class="active"><a href="#">会员信息</a> </li>
-                    <li class=""><a onclick="loadPage('/staff/jumpStaff','main')">员工信息</a> </li>
-                    <li class=""><a onclick="loadPage('/role/jumpRole','main')">职位信息</a> </li>
+                    <li class=""><a href="/staff/jumpStaffPage">员工信息</a> </li>
+                    <li class=""><a href="/role/jumpRolePage">职位管理</a> </li>
                 </ul>
                 <div>数据统计</div>
 
             </div>
-            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" id="main">
+            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
                 <h1 class="page-header">内容</h1>
             </div>
 
@@ -246,5 +268,6 @@
             </div>
         </div>
     </div>
+
 </body>
 </html>
