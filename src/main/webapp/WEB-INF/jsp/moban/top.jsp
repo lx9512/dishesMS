@@ -42,10 +42,10 @@
                             class="iconfont search-submit">&#xe617;</i></div>
                     <i class="search-exit"></i></li>
                 <li><a href="/customerJump/homepage" name="index">网站首页<span><i class="iconfont ">&#xe6aa;</i></span></a></li>
-                <li><a href="about.jsp" name="about">关于我们<span><i class="iconfont ">&#xe6aa;</i></span></a></li>
                 <li><a href="/customerJump/viewDishes" name="productlist">菜式欣赏<span><i class="iconfont ">&#xe6aa;</i></span></a></li>
                 <li><a href="/customerJump/viewOrder" name="article">订单确认<span><i class="iconfont ">&#xe6aa;</i></span></a></li>
                 <li><a href="contact.jsp" name="contact">在线预订<span><i class="iconfont ">&#xe6aa;</i></span></a></li>
+                <li><a href="about.jsp" name="about">个人中心<span><i class="iconfont ">&#xe6aa;</i></span></a></li>
             </ul>
 
             <div class="motai"></div>

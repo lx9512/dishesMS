@@ -5,7 +5,7 @@
 <html>
 <head>
     <title>DishesManagerSystem</title>
-    <link rel="stylesheet" href="../../../pro2/default.css">
+    <%--<link rel="stylesheet" href="../../../pro2/default.css">--%>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7"/>

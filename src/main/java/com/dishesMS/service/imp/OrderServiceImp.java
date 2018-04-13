@@ -6,6 +6,7 @@ import com.dishesMS.service.IOrderService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * Created by yzp on 2018/4/3.
@@ -18,6 +19,18 @@ public class OrderServiceImp implements IOrderService {
 
     public Order getOrderByDishesAndOrderId(Integer dishesinfoID, Integer orderId) {
         return iOrderDao.selectOrderByDishesIdAndOrderMainID(dishesinfoID,orderId);
+    }
+
+    public Order getOrderByIdDAndOrderId(Integer orderId, Integer id) {
+        return iOrderDao.selectOrderByOrderIdAndOrderMainId(orderId,id);
+    }
+
+    public List<Order> getAllDetailByOrderId(Integer orderId) {
+        return iOrderDao.selectAllDetailOrderByOrderId(orderId);
+    }
+
+    public List<Order> getAllOrderByOrderId(Integer orderId) {
+        return iOrderDao.selectAllOrderByOrderId(orderId);
     }
 
     /**
@@ -36,5 +49,9 @@ public class OrderServiceImp implements IOrderService {
      */
     public int updateOrder(Order order) {
         return this.iOrderDao.updateByPrimaryKeySelective(order);
+    }
+
+    public int deleteOrderById(Integer id) {
+        return iOrderDao.deleteByPrimaryKey(id);
     }
 }

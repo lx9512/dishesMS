@@ -1,9 +1,14 @@
 package com.dishesMS.controller;
 
+import com.dishesMS.dao.IOrderDao;
 import com.dishesMS.model.Customer;
 import com.dishesMS.model.Dishes;
+import com.dishesMS.model.Order;
+import com.dishesMS.model.OrderMain;
 import com.dishesMS.service.ICustomerService;
 import com.dishesMS.service.IDishesService;
+import com.dishesMS.service.IOrderMainService;
+import com.dishesMS.service.IOrderService;
 import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +27,10 @@ public class CustomerJumpController {
     private IDishesService dishesService;
     @Resource
     private ICustomerService customerService;
+    @Resource
+    private IOrderService orderService;
+    @Resource
+    private IOrderMainService orderMainService;
 
     @RequestMapping("/getTop")
     public String getTop(){
@@ -90,12 +99,16 @@ public class CustomerJumpController {
 
     /**
      *查看自己历史点单记录
+     * 判断是否有订单，是否登录
      * @return
      */
     @RequestMapping("/viewOrder")
     public ModelAndView jumpViewOrder(){
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("moban/order");
+        OrderMain orderMain=orderMainService.getRunOrderMain(19903);
+        List<Order> orders=orderService.getAllDetailByOrderId(orderMain.getId());
+        modelAndView.addObject("orderList",orders);
         return modelAndView;
     }
 

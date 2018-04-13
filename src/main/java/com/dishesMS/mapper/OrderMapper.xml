@@ -1,96 +1,153 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.dishesMS.dao.IOrderDao" >
-  <resultMap id="BaseResultMap" type="com.dishesMS.model.Order" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="dishesInfo_id" property="dishesinfoId" jdbcType="INTEGER" />
-    <result column="order_id" property="orderId" jdbcType="INTEGER" />
-    <result column="number" property="number" jdbcType="INTEGER" />
-    <result column="info_status" property="infoStatus" jdbcType="INTEGER" />
-  </resultMap>
-  <sql id="Base_Column_List" >
-    id, dishesInfo_id, order_id, number,info_status
+<mapper namespace="com.dishesMS.dao.IOrderDao">
+    <resultMap id="BaseResultMap" type="com.dishesMS.model.Order">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="dishesInfo_id" property="dishesinfoId" jdbcType="INTEGER"/>
+        <result column="order_id" property="orderId" jdbcType="INTEGER"/>
+        <result column="number" property="number" jdbcType="INTEGER"/>
+        <result column="untreate_status" property="untreateStatus" jdbcType="INTEGER"/>
+        <result column="complete_status" property="completeStatus" jdbcType="INTEGER"/>
+    </resultMap>
+    <resultMap id="FullResultMap" type="com.dishesMS.model.Order" extends="BaseResultMap">
+        <association property="dishes" javaType="com.dishesMS.model.Dishes">
+            <id column="id" property="id" jdbcType="INTEGER"/>
+            <result column="name" property="name" jdbcType="VARCHAR"/>
+            <result column="variety_id" property="varietyId" jdbcType="INTEGER"/>
+            <result column="price" property="price" jdbcType="REAL"/>
+            <result column="acridity" property="acridity" jdbcType="SMALLINT"/>
+            <association property="dishesVariety" javaType="com.dishesMS.model.DishesVariety">
+                <id property="id" column="id"/>
+                <result column="var_name" property="name"/>
+                <result property="describe" column="describe"/>
+            </association>
+        </association>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, dishesInfo_id, order_id, number,untreate_status,complete_status
   </sql>
-  <select id="selectOrderByDishesId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
-    SELECT * from order_info where dishesInfo_id=#{dishesinfoId,jdbcType=INTEGER} AND order_id=#{orderId,jdbcType=INTEGER}
+
+    <select id="selectAllDetailOrderByOrderId" resultMap="FullResultMap" parameterType="java.lang.Integer">
+SELECT
+order_info.id,
+order_info.dishesInfo_id,
+order_info.order_id,
+order_info.number,
+order_info.untreate_status,
+order_info.complete_status,
+dishes_info.id,
+dishes_info.`name`,
+dishes_info.variety_id,
+dishes_info.price,
+dishes_info.acridity,
+dishes_info.photo,
+dishes_variety.id,
+dishes_variety.`name`,
+dishes_variety.`describe`
+FROM
+order_info
+INNER JOIN dishes_info ON order_info.dishesInfo_id = dishes_info.id
+INNER JOIN dishes_variety ON dishes_info.variety_id = dishes_variety.id
+WHERE order_id=#{orderId,jdbcType=INTEGER}
+    </select>
+    <select id="selectAllOrderByOrderId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select * FROM order_info where order_id=#{orderId,jdbcType=INTEGER}
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from order_info
-    where id = #{id,jdbcType=INTEGER}
+
+    <select id="selectOrderByDishesIdAndOrderMainID" resultMap="BaseResultMap">
+    SELECT * from order_info where dishesInfo_id=#{0} AND order_id=#{1}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    <select id="selectOrderByOrderIdAndOrderMainId" resultMap="BaseResultMap">
+        SELECT * from order_info where order_id=#{0} AND id=#{1}
+    </select>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from order_info
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from order_info
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.dishesMS.model.Order" >
+    <insert id="insert" parameterType="com.dishesMS.model.Order">
     insert into order_info (id, dishesInfo_id, order_id, 
-      number,info_status)
+      number,untreate_status,complete_status)
     values (#{id,jdbcType=INTEGER}, #{dishesinfoId,jdbcType=INTEGER}, #{orderId,jdbcType=INTEGER}, 
-      #{number,jdbcType=INTEGER},#{infoStatus,jdbcType=INTEGER})
+      #{number,jdbcType=INTEGER},#{untreateStatus,jdbcType=INTEGER},#{completeStatus,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.dishesMS.model.Order" >
-    insert into order_info
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
-      <if test="dishesinfoId != null" >
-        dishesInfo_id,
-      </if>
-      <if test="orderId != null" >
-        order_id,
-      </if>
-      <if test="number != null" >
-        number,
-      </if>
-      <if test="infoStatus != null" >
-        info_status,,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="dishesinfoId != null" >
-        #{dishesinfoId,jdbcType=INTEGER},
-      </if>
-      <if test="orderId != null" >
-        #{orderId,jdbcType=INTEGER},
-      </if>
-      <if test="number != null" >
-        #{number,jdbcType=INTEGER},
-      </if>
-      <if test="infoStatus != null" >
-        #{infoStatus,jdbcType=INTEGER},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.dishesMS.model.Order" >
-    update order_info
-    <set >
-      <if test="dishesinfoId != null" >
-        dishesInfo_id = #{dishesinfoId,jdbcType=INTEGER},
-      </if>
-      <if test="orderId != null" >
-        order_id = #{orderId,jdbcType=INTEGER},
-      </if>
-      <if test="number != null" >
-        number = #{number,jdbcType=INTEGER},
-      </if>
-      <if test="infoStatus != null" >
-        info_status = #{infoStatus,jdbcType=INTEGER},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.dishesMS.model.Order" >
+    <insert id="insertSelective" parameterType="com.dishesMS.model.Order">
+        insert into order_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="dishesinfoId != null">
+                dishesInfo_id,
+            </if>
+            <if test="orderId != null">
+                order_id,
+            </if>
+            <if test="number != null">
+                number,
+            </if>
+            <if test="untreateStatus != null">
+                untreate_status,
+            </if>
+            <if test="completeStatus != null">
+                complete_status,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="dishesinfoId != null">
+                #{dishesinfoId,jdbcType=INTEGER},
+            </if>
+            <if test="orderId != null">
+                #{orderId,jdbcType=INTEGER},
+            </if>
+            <if test="number != null">
+                #{number,jdbcType=INTEGER},
+            </if>
+            <if test="untreateStatus != null">
+                #{untreateStatus,jdbcType=INTEGER},,
+            </if>
+            <if test="completeStatus != null">
+                #{completeStatus,jdbcType=INTEGER},,
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.dishesMS.model.Order">
+        update order_info
+        <set>
+            <if test="dishesinfoId != null">
+                dishesInfo_id = #{dishesinfoId,jdbcType=INTEGER},
+            </if>
+            <if test="orderId != null">
+                order_id = #{orderId,jdbcType=INTEGER},
+            </if>
+            <if test="number != null">
+                number = #{number,jdbcType=INTEGER},
+            </if>
+            <if test="untreateStatus != null">
+                untreate_status = #{untreateStatus,jdbcType=INTEGER},
+            </if>
+            <if test="completeStatus != null">
+                complete_status = #{completeStatus,jdbcType=INTEGER},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.dishesMS.model.Order">
     update order_info
     set dishesInfo_id = #{dishesinfoId,jdbcType=INTEGER},
       order_id = #{orderId,jdbcType=INTEGER},
       number = #{number,jdbcType=INTEGER},
-      info_status = #{infoStatus,jdbcType=INTEGER}
+      untreate_status = #{untreateStatus,jdbcType=INTEGER},
+      complete_status = #{completeStatus,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

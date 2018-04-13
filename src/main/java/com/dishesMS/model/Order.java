@@ -8,8 +8,13 @@ public class Order {
     private Integer orderId;
 
     private Integer number;
-//status用来保存当前账单的状态，状态为：0-未下单，1-未处理，2-未上传，3-已完成，4-删除订单
-    private Integer infoStatus;
+//旧用户体验好：（不使用）status用来保存当前账单的状态，状态为：0-未下单，1-未处理，2-未上传，3-已完成，4-删除订单
+
+    //分别使用 untreateStatus，completeStatus来表示未完成和已完成的数量
+    private Integer untreateStatus;
+    private Integer completeStatus;
+
+    private Dishes dishes;
 
     public Integer getId() {
         return id;
@@ -43,11 +48,27 @@ public class Order {
         this.number = number;
     }
 
-    public Integer getInfoStatus() {
-        return infoStatus;
+    public Integer getCompleteStatus() {
+        return completeStatus;
     }
 
-    public void setInfoStatus(Integer infoStatus) {
-        this.infoStatus = infoStatus;
+    public void setCompleteStatus(Integer completeStatus) {
+        this.completeStatus = completeStatus;
+    }
+
+    public Integer getUntreateStatus() {
+        return untreateStatus;
+    }
+
+    public void setUntreateStatus(Integer untreateStatus) {
+        this.untreateStatus = untreateStatus;
+    }
+
+    public Dishes getDishes() {
+        return dishes;
+    }
+
+    public void setDishes(Dishes dishes) {
+        this.dishes = dishes;
     }
 }

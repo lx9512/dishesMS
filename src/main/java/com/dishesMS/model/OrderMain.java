@@ -13,7 +13,7 @@ public class OrderMain {
     private Integer tableId;
 
     private Integer money;
-
+//这里的账单状态用来表示是否结账 0 为未结账 1为已结账
     private Integer orderStatus;
 
     private List<Order> orderInfo;

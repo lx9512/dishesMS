@@ -16,7 +16,8 @@
       <result column="dishesInfo_id" property="dishesinfoId" jdbcType="INTEGER" />
       <result column="order_id" property="orderId" jdbcType="INTEGER" />
       <result column="number" property="number" jdbcType="INTEGER" />
-      <result column="info_status" property="infoStatus" jdbcType="INTEGER" />
+      <result column="untreate_status" property="untreateStatus" jdbcType="INTEGER"/>
+      <result column="complete_status" property="completeStatus" jdbcType="INTEGER"/>
     </collection>
   </resultMap>
 
@@ -40,7 +41,8 @@ order_info.id,
 order_info.dishesInfo_id,
 order_info.order_id,
 order_info.number,
-order_info.info_status
+order_info.untreate_status,
+order_info.complete_status
 FROM
 orderM
 left JOIN order_info ON orderM.id = order_info.order_id
@@ -58,7 +60,8 @@ WHERE customer_id = #{customerId,jdbcType=INTEGER} AND order_status=0
     order_info.dishesInfo_id,
     order_info.order_id,
     order_info.number,
-    order_info.info_status
+    order_info.untreate_status,
+    order_info.complete_status
     FROM
     orderM
     left JOIN order_info ON orderM.id = order_info.order_id
@@ -67,7 +70,7 @@ WHERE customer_id = #{customerId,jdbcType=INTEGER} AND order_status=0
 
 
   <sql id="Base_Column_List" >
-    id, custmor_id, date, table_id, money,info_status
+    id, custmor_id, date, table_id, money,order_status
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
