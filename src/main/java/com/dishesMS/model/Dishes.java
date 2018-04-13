@@ -9,6 +9,7 @@ public class Dishes {
     private float price;
     private int varietyId;
     private int acridity;
+    private String photo;
     private DishesVariety dishesVariety;
 
     public int getId() {
@@ -49,6 +50,15 @@ public class Dishes {
 
     public void setDishesVariety(DishesVariety dishesVariety) {
         this.dishesVariety = dishesVariety;
+    }
+
+
+    public String getPhotoPath() {
+        return photo;
+    }
+
+    public void setPhotoPath(String photo) {
+        this.photo = photo;
     }
 
     public int getVarietyId() {
