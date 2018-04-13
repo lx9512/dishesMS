@@ -7,11 +7,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>role page</title>
-</head>
-<body>
+
 <h4>职位管理</h4>
 <a href="/role/jumpAddPage">新建职位</a>
 <br>
@@ -39,5 +35,3 @@
     </tbody>
 </table>
 
-</body>
-</html>

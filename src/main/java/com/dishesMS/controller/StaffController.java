@@ -5,6 +5,7 @@ import com.dishesMS.model.Role;
 import com.dishesMS.model.Staff;
 import com.dishesMS.service.IRoleService;
 import com.dishesMS.service.IStaffService;
+import org.apache.ibatis.annotations.Param;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -12,10 +13,10 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
-import javax.jws.WebParam;
 import java.util.List;
 
 /**
@@ -30,6 +31,7 @@ public class StaffController {
     private IStaffService staffService;
     @Resource
     private IRoleService roleService;
+    private String userName;
 
     @RequestMapping("login")
     public String login(@RequestParam("userName") String userName,@RequestParam("password") String password)
@@ -43,6 +45,7 @@ public class StaffController {
             token.setRememberMe(true);
             try{
                 currentUser.login(token);
+                this.userName = userName;
             }
             //所有认证时异常的父类
             catch (AuthenticationException ae)
@@ -93,7 +96,7 @@ public class StaffController {
         }
     }
 
-    @RequestMapping("jumpStaffPage")
+    @RequestMapping("jumpStaff")
     public ModelAndView jumpStaffPage()
     {
         ModelAndView modelAndView = new ModelAndView();
@@ -133,5 +136,42 @@ public class StaffController {
         return "error";
     }
 
+    @RequestMapping("jumpUpdatePassword")
+    public String jumpUpdatePassword()
+    {
+        return "system/peopleMng/updatePassword";
+    }
+
+    @RequestMapping("updatePassword")
+    @ResponseBody
+    public String updatePassword(@Param("password") String password)
+    {
+        if(staffService.reviseStaffPassword(userName,password))
+            return "success";
+        else
+            return "error";
+    }
+
+    @RequestMapping("jumpEditSelfInfo")
+    public ModelAndView jumpEditSelfInfo()
+    {
+        ModelAndView modelAndView = new ModelAndView();
+        Staff staff = staffService.findStaffByAccount(userName);
+        modelAndView.addObject("selfInfo",staff);
+        modelAndView.setViewName("/system/peopleMng/editSelfInfo");
+        return modelAndView;
+    }
+
+    @RequestMapping("editSelfInfo")
+    public String editSelfInfo(@Param("name") String name,@Param("gender")String gender,@Param("idCard")String idCard,
+                               @Param("tel")String tel,@Param("email")String email)
+    {
+        Staff staff = new Staff(userName,name,gender,idCard,tel,email);
+        if(staffService.reviseStaffByAccount(staff))
+        {
+            return "success";
+        }else
+            return "error";
+    }
 
 }

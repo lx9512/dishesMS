@@ -5,7 +5,9 @@
   Time: 16:36
   To change this template use File | Settings | File Templates.
 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="content-type" content="text/html;charset=UTF-8">
@@ -15,10 +17,49 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="">
+    <!--
+       <link rel="stylesheet" href="http://apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.min.css">
 
-    <link rel="stylesheet" href="http://apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.min.css">
-    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script src="http://apps.bdimg.com/libs/jquery.cookie/1.4.1/jquery.cookie.min.js"></script>
+       <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+       <script src="http://apps.bdimg.com/libs/jquery.cookie/1.4.1/jquery.cookie.min.js"></script>
+       -->
+
+    <script src="/resource/js/jQuery3.3.1.js"></script>
+    <script src="/resource/js/jquery.cookie.js"></script>
+    <script src="/resource/js/bootstrap.js"></script>
+    <script src="/resource/js/qrcode.js"></script>
+    <script src="/resource/js/main.js"></script>
+    <link rel="stylesheet" href="/resource/css/bootstrap.min.css">
+
+    <script type="text/javascript">
+        function loadPage(url,id) {
+            $.ajax(
+                {
+                    type:"post",
+                    //data:formData,
+                    url:url,
+                    async:true,
+                    processData: false,
+                    contentType: false,
+                    success:function (data) {
+                        //alert(data);
+                        document.getElementById(id).innerHTML=data;
+                        executeScript(data);
+                    },error:function (data) {
+                    alert("页面加载失败！"+data);
+                }
+                }
+            )
+        }
+
+        $("#myModal").on("hidden.bs.modal", function() {
+            $(this).removeData("bs.modal");
+            /*modal页面加载$()错误,由于移除缓存时加载到<span style="color: rgb(51, 51, 255);"><div class="modal-content"></div></span>未移除的数据，手动移除加载的内容*/
+            $(this).find(".modal-content").children().remove();
+        });
+
+
+    </script>
     <title>主页</title>
 
     <style>
@@ -96,7 +137,7 @@
          */
 
         .main {
-            padding: 70px;
+            padding: 20px;
         }
         @media (min-width: 768px) {
             .main {
@@ -154,9 +195,9 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">登录</a> </li>
-                    <li><a href="#">注册</a> </li>
-                    <li><a href="#"></a> </li>
+                    <li><a href="/staff/jumpEditSelfInfo">编辑个人资料</a> </li>
+                    <li><a href="/staff/jumpUpdatePassword">修改密码</a> </li>
+                    <li><a href="/staff/logout">退出</a> </li>
                     <li><a href="#"></a> </li>
                 </ul>
             </div>
@@ -180,34 +221,53 @@
                 </ul>
                 <div>菜品管理</div>
                 <ul>
-                    <li><a href="javascript:void(0)" onclick="loadUrl('/customer/jumpToTest')">菜品信息</a> </li>
-                    <li><a href="javascript:void(0)" onclick="loadUrl('/customer/jumpToTest')">类别管理</a> </li>
+                    <li><a onclick="loadPage('/dishes/jumpDishes','main')">菜品信息</a> </li>
+                    <li><a onclick="loadPage('/dishesVariety/jumpDishesVariety','main')">菜品类别</a> </li>
                 </ul>
                 <div>订单管理</div>
                 <ul>
-                    <li><a href="javascript:void(0)" onclick="loadUrl('/customer/jumpToTest')">订单信息</a> </li>
-                    <li><a href="javascript:void(0)" onclick="loadUrl('/customer/jumpToTest')">菜品加工</a> </li>
+                    <li><a href="#">订单信息</a> </li>
+                    <li><a href="#">菜品加工</a> </li>
                 </ul>
                 <div>桌台管理</div>
                 <ul>
-                    <li><a href="javascript:void(0)" onclick="loadUrl('/customer/jumpToTest')">管理桌台</a></li>
-                    <%--管理桌台主要完成添加桌台删除桌台以及为桌台重命名等操作--%>
+                    <li><a onclick="loadPage('/table/jumpTable','main')">桌台信息</a> </li>
+                    <li><a onclick="loadPage('/table/makeQRCode','main')">二维码配置</a></li>
                 </ul>
                 <div>服务面板</div>
                 <div class="nav nav-sidebar">人员管理</div>
                 <ul>
-                    <li class="active"><a href="javascript:void(0)" onclick="loadUrl('/customer/jumpToTest')">会员信息</a> </li>
-                    <li class=""><a href="javascript:void(0)" onclick="loadUrl('/customer/jumpToTest')">员工信息</a> </li>
-                    <li class=""><a href="javascript:void(0)" onclick="loadUrl('/customer/jumpToTest')">职位管理</a> </li>
+                    <li class="active"><a href="#">会员信息</a> </li>
+                    <li class=""><a onclick="loadPage('/staff/jumpStaff','main')">员工信息</a> </li>
+                    <li class=""><a onclick="loadPage('/role/jumpRole','main')">职位信息</a> </li>
                 </ul>
                 <div>数据统计</div>
 
             </div>
-            <div class="col-sm-5 col-md-4  col-sm-offset-4  col-md-offset-3 main" id="mainDiv">
-                <p class="page-header">内容</p>
+            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" id="main">
+                <h1 class="page-header">内容</h1>
             </div>
+
         </div>
     </div>
 
+    <!--  model  -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                </div>
+                <div class="modal-body" id="modelBody">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

@@ -26,10 +26,9 @@ import java.util.List;
 @RequestMapping("dishes")
 @Scope("prototype")
 public class DishesController {
-
+    private String photoPath;
     @Resource
     private IDishesService dishesService;
-
     @Resource
     private IDishesVarietyService dishesVarietyService;
 
@@ -46,6 +45,11 @@ public class DishesController {
     public String addDishes(Dishes dishes ,int varietyId)
     {
         dishes.setDishesVariety(new DishesVariety(varietyId));
+        if(null != photoPath )
+        {
+            dishes.setPhotoPath(photoPath);
+            photoPath = null;
+        }
         if(dishesService.saveDishes(dishes))
             return "success";
         return "error";
@@ -63,9 +67,26 @@ public class DishesController {
     public ModelAndView jumpEdit(int id){
         ModelAndView modelAndView = new ModelAndView();
         Dishes dishes = dishesService.findDishesById(id);
+        List varietyList = dishesVarietyService.findAllDishesVariety();
         modelAndView.addObject("dishes",dishes);
+        modelAndView.addObject("varietyList",varietyList);
         modelAndView.setViewName("/system/dishesMng/editDishes");
         return modelAndView;
+    }
+    @RequestMapping("edit")
+    public String edit(Dishes dishes ,int varietyId)
+    {
+        dishes.setDishesVariety(new DishesVariety(varietyId));
+        if(null != photoPath)
+        {
+            dishes.setPhotoPath(photoPath);
+            photoPath = null;
+        }
+        if(dishesService.reviseDishes(dishes))
+        {
+            return "success";
+        }else
+            return "error";
     }
     @RequestMapping("getALL")
     public void getAllDishes() {
@@ -95,7 +116,8 @@ public class DishesController {
 
             }
             //System.out.println(filepath.toString());
-            return "../images/dishes/"+filename;
+            photoPath = "../images/dishes/"+filename;
+            return photoPath;
         }else
             return "error";
     }
