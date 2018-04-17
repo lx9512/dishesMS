@@ -12,7 +12,6 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7"/>
 <meta name="format-detection" content="telephone=no">
 <meta name="renderer" content="webkit">
-<meta name="author" content="www.cssmoban.com" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Cache-Control" content="no-siteapp" />
 <meta name="description" content="" />
@@ -27,6 +26,7 @@
     <div class="main-head">
         <p><span>在线预定</span></p>
     </div>
+    <input type="text" style="border:0px;background:none;" readonly autofocus/>
     <div class="main-reserve">
         <form action="#" method="post" id="food-reserve">
             <ul>

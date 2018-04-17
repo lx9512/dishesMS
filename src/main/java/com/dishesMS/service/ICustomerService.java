@@ -8,6 +8,8 @@ import com.dishesMS.model.Customer;
  */
 public interface ICustomerService {
 
+    public Customer getCustomerByTokon(String name,String password);
+
     public Customer getCustomerById(Integer id);
 
     public int updateById(Customer customer);

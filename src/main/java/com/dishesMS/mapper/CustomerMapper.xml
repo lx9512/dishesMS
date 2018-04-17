@@ -21,12 +21,7 @@
     from customer
     where id = #{id,jdbcType=INTEGER}
   </select>
-
-  <!-- 20180414 add by lx -->
-  <select id="selectCustomerById" parameterType="int" resultType="com.dishesMS.model.Customer">
-    select * from customer where id = #{customer_id}
-  </select>
-
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from customer
     where id = #{id,jdbcType=INTEGER}

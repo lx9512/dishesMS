@@ -13,6 +13,7 @@ import java.util.List;
  */
 @Service
 public class DishesServiceImp implements IDishesService {
+
     @Resource
     private IDishesDAO dishesDAO;
 
@@ -57,5 +58,9 @@ public class DishesServiceImp implements IDishesService {
             return false;
         }
 
+    }
+
+    public List<Dishes> findBySearchKey(String searchKey) {
+        return dishesDAO.selectSearchResult(searchKey);
     }
 }

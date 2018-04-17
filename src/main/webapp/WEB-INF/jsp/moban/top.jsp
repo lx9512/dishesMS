@@ -44,24 +44,24 @@
                 <li><a href="/customerJump/homepage" name="index">网站首页<span><i class="iconfont ">&#xe6aa;</i></span></a></li>
                 <li><a href="/customerJump/viewDishes" name="productlist">菜式欣赏<span><i class="iconfont ">&#xe6aa;</i></span></a></li>
                 <li><a href="/customerJump/viewOrder" name="article">订单确认<span><i class="iconfont ">&#xe6aa;</i></span></a></li>
-                <li><a href="contact.jsp" name="contact">在线预订<span><i class="iconfont ">&#xe6aa;</i></span></a></li>
-                <li><a href="about.jsp" name="about">个人中心<span><i class="iconfont ">&#xe6aa;</i></span></a></li>
+                <li><a href="/customerJump/contact" name="contact">在线预订<span><i class="iconfont ">&#xe6aa;</i></span></a></li>
+                <li><a href="/customerJump/selfPage" name="about">个人中心<span><i class="iconfont ">&#xe6aa;</i></span></a></li>
             </ul>
 
             <div class="motai"></div>
             <ul>
                 <li><a><i class="iconfont search-botton">&#xe617;</i></a></li>
-                <li><a>中文</a></li>
-                <li><a>En</a></li>
+                <li><a href="/customerJump/login">登录</a></li>
+                <li><a href="#">注销</a></li>
                 <li><a><i class="iconfont nav-bottom">&#xe61f;</i></a></li>
             </ul>
 
         </div>
         <div class="search-box">
-            <form method="post" action="#" id="search-keyword">
-                <input type="text" name="search-keyword" placeholder="请输入您的内容">
+            <form method="post" action="/customer/searchDishes" id="search-keyword">
+                <input type="text" name="searchKey" placeholder="请输入您的内容">
                 <span>
-                    </span>
+                </span>
             </form>
 
         </div>
@@ -73,7 +73,6 @@
         <div id="myCarousel" class="carousel slide">
             <!-- 轮播（Carousel）指标 -->
             <ol class="carousel-indicators">
-
                 <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
                 <li data-target="#myCarousel" data-slide-to="1"></li>
                 <li data-target="#myCarousel" data-slide-to="2"></li>

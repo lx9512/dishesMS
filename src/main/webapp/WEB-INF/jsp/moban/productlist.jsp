@@ -37,6 +37,14 @@
         <%--</ul>--%>
     <%--</div>--%>
 <%--</main>--%>
+<c:choose>
+    <c:when test="${haveTable==null}">
+        <span><p>请您选择您的桌台号：</p></span>
+    </c:when>
+    <c:otherwise>
+        <span><p>您的桌台号为：${haveTable}</p></span>
+    </c:otherwise>
+</c:choose>
 <input type="text" style="border:0px;background:none;" readonly autofocus/>
 <main>
 

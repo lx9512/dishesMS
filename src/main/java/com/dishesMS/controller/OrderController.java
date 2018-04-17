@@ -8,15 +8,13 @@ import com.dishesMS.model.Staff;
 import com.dishesMS.service.*;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
-import java.sql.Timestamp;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+
 import java.util.List;
 
 /**
@@ -62,6 +60,15 @@ public class OrderController {
     }
 
     /**
+     * 此操作需要先登录
+     * 锁定桌号，通过扫描二维码进行
+     */
+    @RequestMapping("/lockTable/{tableId}")
+    public void lockTable(@PathVariable Integer tableId){
+
+    }
+
+    /**
      * 添加菜单需求判定：
      * 1.是否登录（权限）
      * 2.是否有桌号（扫座位锁桌，也可以后台进行锁桌【当进行排队时进行此模式】）
@@ -75,31 +82,33 @@ public class OrderController {
      * @param dishesId 点单菜品
      */
     @RequestMapping("/addOrder/{dishesId}")
-    public ModelAndView addOrder(@PathVariable Integer dishesId) {
+    public ModelAndView addOrder(@PathVariable Integer dishesId, @CookieValue(required = false) String id) {
         ModelAndView modelAndView = new ModelAndView();
         //判定一
+       if(id!=null) {
+           OrderMain orderMain = orderMainService.getRunOrderMain(Integer.valueOf(id));
+           //判定二
 
-        //判定二
+           //判定三
 
-        //判定三
-        OrderMain orderMain = orderMainService.getRunOrderMain(19903);
 
-        //判定四添加或是更新
-        Order order = orderService.getOrderByDishesAndOrderId(dishesId, orderMain.getId());
-        if (order == null) {
-            order = new Order();
-            order.setNumber(1);
-            order.setOrderId(orderMain.getId());
-            order.setDishesinfoId(dishesId);
-            order.setUntreateStatus(1);
-            order.setCompleteStatus(0);
-            orderService.insertOrder(order);
-        } else {
-            order.setNumber(order.getNumber() + 1);
-            order.setUntreateStatus(order.getUntreateStatus() + 1);
-            orderService.updateOrder(order);
-        }
-        modelAndView.setViewName("redirect:/customerJump/viewDishes");
+           //判定四添加或是更新
+           Order order = orderService.getOrderByDishesAndOrderId(dishesId, orderMain.getId());
+           if (order == null) {
+               order = new Order();
+               order.setNumber(1);
+               order.setOrderId(orderMain.getId());
+               order.setDishesinfoId(dishesId);
+               order.setUntreateStatus(1);
+               order.setCompleteStatus(0);
+               orderService.insertOrder(order);
+           } else {
+               order.setNumber(order.getNumber() + 1);
+               order.setUntreateStatus(order.getUntreateStatus() + 1);
+               orderService.updateOrder(order);
+           }
+           modelAndView.setViewName("redirect:/customerJump/viewDishes");
+       }
         return modelAndView;
 
     }

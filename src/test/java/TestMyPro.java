@@ -42,9 +42,12 @@ public class TestMyPro {
         logger.info(dishes.get(0).getName());
         OrderMain orderMain = iOrderMainService.getDetailByCustomerId(19903);
         logger.info(orderMain.getOrderInfo());
-        Order order=orderService.getOrderByDishesAndOrderId(3,2);
+        Order order=orderService.getOrderByDishesAndOrderId(1,2);
         logger.info(order.getId());
         List<Order> order1 = orderService.getAllDetailByOrderId(2);
         logger.info(order1.get(0).getDishes().getDishesVariety().getDescribe());
+        dishes = dishesService.findBySearchKey("肉");
+        logger.info(dishes);
+
     }
 }

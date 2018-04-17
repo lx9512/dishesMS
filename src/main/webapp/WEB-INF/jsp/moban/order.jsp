@@ -39,11 +39,12 @@
             <p>你好！您还没有进行点餐</p>
         </c:when>
         <c:otherwise>
+            <c:set var="total"  value="0"/>
             <div class="table-responsive">
                 <table class="table table-striped">
                     <thead class="thead-inverse">
                     <tr>
-                        <th>图片</th>
+                        <th>菜品图例</th>
                         <th width="180">
                             订单信息<br>
                             (Tips:看清楚菜的口味和价格哟~~)
@@ -63,7 +64,7 @@
                     </thead>
                     <tbody>
                     <c:forEach var="order" items="${orderList}">
-
+                        <c:set var="total"  value="${total + order.getDishes().getPrice() * order.getNumber()}"/>
                         <tr>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <th>
 
@@ -108,6 +109,13 @@
                         <%--</td>--%>
 
                     </c:forEach>
+                    <tr>
+                        <th colspan="6">
+                            <div  class="text-right">
+                                <p><span>总金额:￥${total}</span><button href="#">结账</button></p>
+                            </div>
+                        </th>
+                    </tr>
                     </tbody>
                 </table>
             </div>

@@ -21,7 +21,7 @@
     <div>
         <ul class="footer-top">
             <li><a href="/customerJump/homepage">网站首页</a></li>
-            <li><a href="about.jsp">关于我们</a></li>
+            <li><a href="about.jsp">个人中心</a></li>
             <li><a href="/customerJump/viewDishes">菜式欣赏</a></li>
             <li><a href="/customerJump/viewOrder">美食资讯</a></li>
             <li><a href="contact.jsp">在线预订</a></li>
@@ -30,17 +30,17 @@
     <div>
         <ul class="footer-body">
             <li>
-                <span>电话:</span><span>0714-8868331</span>
+                <span>电话:</span><span>9999999999</span>
             </li>
             <li>
                 <span>邮箱:</span><span>yuanzhiroc@163.com</span>
             </li>
             <li>
-                <span>地址:</span><span>湖北省大冶市XXX大道XXX办公室</span>
+                <span>地址:</span><span>湖南省XX市XXX大道XXX办公室</span>
             </li>
         </ul>
-        <P><span><a href="" target="_blank" title="DM">DM</a>More help for <a href="" target="_blank" title="DM">YZP LX</a>
-           by - <a href="" title="design" target="_blank">design</a></span></P>
+        <P><span><a href="" target="_blank" title="DM">DM</a>More help for <a href="" target="_blank" title="DM">YZP </a>
+          and <a href="" title="design" target="_blank">LX</a></span></P>
         <ul class="footer-footer">
             <li><i class="iconfont ">&#xe613;</i></li>
             <li><i class="iconfont ">&#xe634;</i></li>

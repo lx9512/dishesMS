@@ -17,4 +17,5 @@ public interface IDishesDAO {
     public void deleteDishes(int id);
     public void updateDishes(Dishes dishes);
     public List<Dishes> selectAllByDescribe(String describe);
+    public List<Dishes> selectSearchResult(String searchKey);
 }

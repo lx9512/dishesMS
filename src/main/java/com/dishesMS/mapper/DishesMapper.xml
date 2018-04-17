@@ -175,6 +175,21 @@
     dishes_variety ON dishes_info.variety_id = dishes_variety.id
     where dishes_variety.`describe` = #{describe,jdbcType=VARCHAR};
   </select>
+  <select id="selectSearchResult" resultMap="userResultMap" parameterType="java.lang.String">
+     SELECT dishes_info.id,
+    dishes_info.name,
+    dishes_info.price,
+    dishes_info.acridity,
+    dishes_info.photo,
+    dishes_variety.describe var_describe,
+    dishes_variety.id var_id,
+    dishes_info.variety_id,
+    dishes_variety.name var_name
+    FROM
+    dishes_info JOIN
+    dishes_variety ON dishes_info.variety_id = dishes_variety.id
+    where dishes_info.name like concat('%',#{searchKey,jdbcType=VARCHAR},'%')
+  </select>
   
   <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.dishesMS.model.Dishes" >
     update dishes_info
