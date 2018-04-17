@@ -28,4 +28,5 @@
             <input type="button" value="register" class="btn btn-default" onclick="window.location.href='#'">
         </div>
     </div>
+</form>
 </html>

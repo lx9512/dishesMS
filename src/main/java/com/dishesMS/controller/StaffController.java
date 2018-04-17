@@ -1,11 +1,19 @@
 package com.dishesMS.controller;
 
+import com.dishesMS.common.EncryptionByMD5;
 import com.dishesMS.model.Role;
 import com.dishesMS.model.Staff;
 import com.dishesMS.service.IRoleService;
 import com.dishesMS.service.IStaffService;
+import org.apache.ibatis.annotations.Param;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
@@ -23,13 +31,43 @@ public class StaffController {
     private IStaffService staffService;
     @Resource
     private IRoleService roleService;
+    private String userName;
+
+    @RequestMapping("login")
+    public String login(@RequestParam("userName") String userName,@RequestParam("password") String password)
+    {
+        Subject currentUser = SecurityUtils.getSubject();
+
+        if(!currentUser.isAuthenticated()){
+            // 把用户名和密码封装为UsernamePasswordToken类
+            UsernamePasswordToken token = new UsernamePasswordToken(userName,password);
+            //rememberme
+            token.setRememberMe(true);
+            try{
+                currentUser.login(token);
+                this.userName = userName;
+            }
+            //所有认证时异常的父类
+            catch (AuthenticationException ae)
+            {
+                System.out.println("登录错误" + ae.getMessage());
+                return "redirect:/login.jsp";
+            }
+        }
+        return "/system/main";
+    }
 
     @RequestMapping("add")
     public String addStaff(Staff staff,int roleId)
     {
         staff.setRole(new Role(roleId));
-        staffService.saveStaff(staff);
-        return "redirect:/staff/getAllStaff";
+        // 对密码进行MD5，1024次加密
+        String newPassword = EncryptionByMD5.encryptionPassword(staff.getPassword(),staff.getAccount()).toString();
+        staff.setPassword(newPassword);
+        if(true == staffService.saveStaff(staff))
+            return "redirect:/staff/getAll";
+        else
+            return "用户已存在";
     }
 
     @RequestMapping("jumpAdd")
@@ -42,7 +80,13 @@ public class StaffController {
         return modelAndView;
     }
 
-    @RequestMapping("/getAllStaff")
+    @RequestMapping("jumpEditStaff")
+    public String jumpEditStaffJSP()
+    {
+        return "/system/peopleMng/editStaff";
+    }
+
+    @RequestMapping("/getAll")
     public void getAllStaff()
     {
         List<Staff> staffList = staffService.findAllStaff();
@@ -51,4 +95,83 @@ public class StaffController {
             System.out.println(staff.getRole().getTitle());
         }
     }
+
+    @RequestMapping("jumpStaff")
+    public ModelAndView jumpStaffPage()
+    {
+        ModelAndView modelAndView = new ModelAndView();
+        List<Staff> staffList = staffService.findAllStaff();
+        modelAndView.addObject("staffs",staffList);
+        modelAndView.setViewName("/system/peopleMng/staffPage");
+        return modelAndView;
+    }
+
+    @RequestMapping("edit")
+    public String editStaff(Staff staff,int roleId)
+    {
+
+        staff.setRole(new Role(roleId));
+        if(true == staffService.reviseStaff(staff))
+            return "success";
+        return "error";
+    }
+
+    @RequestMapping("jumpEdit")
+    public ModelAndView jumpEdit(int id)
+    {
+        ModelAndView modelAndView = new ModelAndView();
+        Staff staff = staffService.findStaffById(id);
+        List<Role> roleList = roleService.findAllRole();
+        modelAndView.addObject("staff",staff);
+        modelAndView.addObject("roles",roleList);
+        modelAndView.setViewName("/system/peopleMng/editStaff");
+        return modelAndView;
+    }
+
+    @RequestMapping("drop")
+    public String dropStaff(int id)
+    {
+        if(true == staffService.removeStaff(id))
+            return "success";
+        return "error";
+    }
+
+    @RequestMapping("jumpUpdatePassword")
+    public String jumpUpdatePassword()
+    {
+        return "system/peopleMng/updatePassword";
+    }
+
+    @RequestMapping("updatePassword")
+    @ResponseBody
+    public String updatePassword(@Param("password") String password)
+    {
+        if(staffService.reviseStaffPassword(userName,password))
+            return "success";
+        else
+            return "error";
+    }
+
+    @RequestMapping("jumpEditSelfInfo")
+    public ModelAndView jumpEditSelfInfo()
+    {
+        ModelAndView modelAndView = new ModelAndView();
+        Staff staff = staffService.findStaffByAccount(userName);
+        modelAndView.addObject("selfInfo",staff);
+        modelAndView.setViewName("/system/peopleMng/editSelfInfo");
+        return modelAndView;
+    }
+
+    @RequestMapping("editSelfInfo")
+    public String editSelfInfo(@Param("name") String name,@Param("gender")String gender,@Param("idCard")String idCard,
+                               @Param("tel")String tel,@Param("email")String email)
+    {
+        Staff staff = new Staff(userName,name,gender,idCard,tel,email);
+        if(staffService.reviseStaffByAccount(staff))
+        {
+            return "success";
+        }else
+            return "error";
+    }
+
 }

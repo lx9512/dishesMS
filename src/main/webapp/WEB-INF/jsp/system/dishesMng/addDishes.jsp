@@ -7,11 +7,66 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="http://apps.bdimg.com/libs/jquery.cookie/1.4.1/jquery.cookie.min.js"></script>
+<script type="text/javascript">
+    function uploadPhoto() {
+        //获取图片上传表单
+        var formData = new FormData(document.forms.namedItem("form2"))
+        $.ajax(
+            {
+                type:"post",
+                data:formData,
+                url:"/dishes/upImage",
+                async:false,
+                processData: false,
+                contentType: false,
+                success:function (data) {
+                    alert(data);
+                    $("#photo").append("<img src='"+data+'?'+Math.random()+"' alt='this is photo'>");
+                },error:function (data) {
+                    alert("图片上传失败！");
+            }
+            }
+        )
+    }
+
+    function loadPage(url) {
+        $.ajax(
+            {
+                type:"post",
+                //data:formData,
+                url:url,
+                async:false,
+                processData: false,
+                contentType: false,
+                success:function (data) {
+                    alert(data);
+                   // $("#photo").append("<img src='"+data+'?'+Math.random()+"' alt='this is photo'>");
+                },error:function (data) {
+                alert("页面加载失败！");
+            }
+            }
+        )
+
+    }
+</script>
 <html>
 <head>
     <title>增加菜品</title>
 </head>
 <body>
+<h4>上传菜品图片</h4>
+<form name="form2" method="post" enctype="multipart/form-data">
+    <input type="file" name="file">
+    <input type="button" value="上传图片" onclick="uploadPhoto()">
+</form>
+<div id="photo">
+<!--    <img src="../images/dishes/兴业银行招聘.png" alt="this is photo">  -->
+    <a onclick="loadPage('/dishes/jumpDishes')">加载菜品管理</a>
+
+</div>
+<h4>菜品信息填写</h4>
 <form action="/dishes/add">
     <label>菜品名称</label>
     <input type="text" name="name"><br>

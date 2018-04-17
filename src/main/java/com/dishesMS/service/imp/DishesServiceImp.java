@@ -17,8 +17,13 @@ public class DishesServiceImp implements IDishesService {
     @Resource
     private IDishesDAO dishesDAO;
 
-    public void saveDishes(Dishes dishes){
-        dishesDAO.insertDishes(dishes);
+    public boolean saveDishes(Dishes dishes){
+        if(dishesDAO.selectDishesByName(dishes.getName()) == null)
+        {
+            dishesDAO.insertDishes(dishes);
+            return true;
+        }
+        return false;
     }
 
     public List<Dishes> findAllDishes() {
@@ -27,6 +32,32 @@ public class DishesServiceImp implements IDishesService {
 
     public List<Dishes> findAllByDescribe(String describe) {
         return dishesDAO.selectAllByDescribe(describe);
+    }
+
+    public Dishes findDishesById(int id) {
+        return dishesDAO.selectDishesById(id);
+    }
+
+    public boolean removeDishes(int id) {
+        try{
+            dishesDAO.deleteDishes(id);
+            return true;
+        }catch (Exception e) {
+            System.out.println("delete dishes error " + e.getMessage());
+        }
+        return false;
+    }
+
+    public boolean reviseDishes(Dishes dishes) {
+        try {
+            dishesDAO.updateDishes(dishes);
+            return true;
+        }catch (Exception e)
+        {
+            e.printStackTrace();
+            return false;
+        }
+
     }
 
     public List<Dishes> findBySearchKey(String searchKey) {

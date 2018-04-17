@@ -1,9 +1,11 @@
 package com.dishesMS.model;
 
+import java.io.Serializable;
+
 /**
  * Created by aa123 on 2018/2/23.
  */
-public class Staff {
+public class Staff implements Serializable {
 
     private int id;
     private String name;        //姓名
@@ -32,6 +34,15 @@ public class Staff {
         this.role = new Role();
         this.role.setId(roleId);
     }*/
+    public Staff(String account,String name,String gender,String idCard,String tel,String email)
+    {
+        this.account = account;
+        this.name = name;
+        this.gender = gender;
+        this.idCard = idCard;
+        this.tel = tel;
+        this.email = email;
+    }
 
     public int getId() {
         return id;
