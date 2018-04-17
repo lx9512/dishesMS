@@ -33,6 +33,10 @@ public class OrderServiceImp implements IOrderService {
         return iOrderDao.selectAllOrderByOrderId(orderId);
     }
 
+    public List<Order> getIncompleteOrders() {
+        return iOrderDao.selectIncompleteOrders();
+    }
+
     /**
      * 添加一个订单
      * @param order
@@ -54,4 +58,5 @@ public class OrderServiceImp implements IOrderService {
     public int deleteOrderById(Integer id) {
         return iOrderDao.deleteByPrimaryKey(id);
     }
+
 }

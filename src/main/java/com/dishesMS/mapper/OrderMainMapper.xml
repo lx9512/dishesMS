@@ -4,10 +4,12 @@
   <resultMap id="BaseResultMap" type="com.dishesMS.model.OrderMain" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="customer_id" property="customerId" jdbcType="INTEGER" />
-    <result column="date" property="date" jdbcType="TIMESTAMP" />
+    <result column="order_date" property="orderDate" jdbcType="TIMESTAMP" />
+    <result column="checkout_date" property="checkDate" jdbcType="TIMESTAMP" />
     <result column="table_id" property="tableId" jdbcType="INTEGER" />
     <result column="money" property="money" jdbcType="INTEGER" />
     <result column="order_status" property="orderStatus" jdbcType="INTEGER" />
+    <!-- result column="cashier_id" property="customerId" jdbcType="INTEGER" / 20180414 lx -->
   </resultMap>
 
   <resultMap id="OrderResultMap" type="com.dishesMS.model.OrderMain" extends="BaseResultMap">
@@ -19,7 +21,31 @@
       <result column="untreate_status" property="untreateStatus" jdbcType="INTEGER"/>
       <result column="complete_status" property="completeStatus" jdbcType="INTEGER"/>
     </collection>
+  </resultMap >
+
+  <!--   20180414 add by lx  -->
+  <resultMap id="OrderMainDetailResultMap" type="com.dishesMS.model.OrderMain">
+    <id property="id" column="id" jdbcType="INTEGER" />
+    <result property="orderDate" column="order_date" jdbcType="TIMESTAMP"/>
+    <result property="checkoutDate" column="checkout_date" jdbcType="TIMESTAMP" />
+    <result property="orderStatus" column="order_status" jdbcType="INTEGER" />
+    <result property="money" column="money" />
+    <association property="customer" column="customer_id"
+                 select="com.dishesMS.dao.ICustomerDAO.selectCustomerById"
+                 javaType="com.dishesMS.model.Customer" />
+    <association property="table" column="table_id"
+                 select="com.dishesMS.dao.ITableDAO.selectTableById"
+                 javaType="com.dishesMS.model.Table" />
+    <association property="staff" column="staff_id"
+                 select="com.dishesMS.dao.IStaffDAO.selectStaffById"
+                 javaType="com.dishesMS.model.Staff" />
+    <collection property="orderInfo" javaType="ArrayList" column="id"
+                ofType="com.dishesMS.model.Order"
+                select="com.dishesMS.dao.IOrderDao.selectOrderByOrderMainId"
+                fetchType="lazy">
+    </collection >
   </resultMap>
+  <!-- end -->
 
   <select id="selectByCustomerId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
     select * from orderM where customer_id = #{customerId,jdbcType=INTEGER} AND order_status=0
@@ -28,6 +54,10 @@
 <select id="selectAllOrder" resultMap="BaseResultMap">
   select * from orderM
 </select>
+
+  <select id="selectAllDetailOrderMain" resultMap="OrderMainDetailResultMap">
+    select * from orderM
+  </select>
 
 <select id="selectDetailOrderByCustomerId" resultMap="OrderResultMap" parameterType="java.lang.Integer">
   SELECT
@@ -161,4 +191,8 @@ WHERE customer_id = #{customerId,jdbcType=INTEGER} AND order_status=0
        order_status = #{orderStatus,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <!--update id="updateCheckoutInfo">
+    update orderm SET order_status = #{status},staff_id = #{staffId},checkout_date = #{checkoutDate} where id = #{orderId}
+  </update -->
 </mapper>

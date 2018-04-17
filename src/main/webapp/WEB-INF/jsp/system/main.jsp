@@ -226,8 +226,8 @@
                 </ul>
                 <div>订单管理</div>
                 <ul>
-                    <li><a href="#">订单信息</a> </li>
-                    <li><a href="#">菜品加工</a> </li>
+                    <li><a onclick="loadPage('/Order/jumpOrder','main')">订单信息</a> </li>
+                    <li><a href="#">菜肴烹饪</a> </li>
                 </ul>
                 <div>桌台管理</div>
                 <ul>

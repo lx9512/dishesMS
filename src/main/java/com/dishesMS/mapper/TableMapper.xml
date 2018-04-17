@@ -11,7 +11,7 @@
     </select>
 
     <select id="selectTableById" resultType="com.dishesMS.model.Table">
-        SELECT * from table_info where id like #{id}
+        SELECT * from table_info where id like #{table_id}
     </select>
 
     <insert id="insertTable" parameterType="com.dishesMS.model.Table" keyProperty="id" useGeneratedKeys="true">

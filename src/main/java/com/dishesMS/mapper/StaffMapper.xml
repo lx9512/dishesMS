@@ -37,7 +37,7 @@
     </select>
 
     <select id="selectStaffById" parameterType="int" resultType="com.dishesMS.model.Staff">
-        SELECT * FROM staff where id = #{id}
+        SELECT * FROM staff where id = #{staff_id}
     </select>
 
     <update id="updateStaff" parameterType="com.dishesMS.model.Staff">

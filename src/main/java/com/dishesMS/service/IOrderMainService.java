@@ -2,6 +2,7 @@ package com.dishesMS.service;
 
 import com.dishesMS.model.OrderMain;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -13,4 +14,6 @@ public interface IOrderMainService {
     public OrderMain getDetailByCustomerId(Integer customerId);
     public List<OrderMain> getAllOldOrderMain(Integer customerId);
     public List<OrderMain> getAllOrderMain();
+    public List<OrderMain> getAllDetailOrderMain();
+    public boolean editCheckoutInfo(int orderId, int status, int staffId, Timestamp checkoutDate);
 }
