@@ -71,13 +71,14 @@
             <value>
                 #/favicon.ico = anon
                 #/logo.png = anon
-                /login.jsp = anon
-                /staff/login = anon
+                #/login.jsp = anon
+               #/staff/login = anon
+                #/jsp/moban/* = anon
                 /staff/logout = logout
                 # allow WebStart to pull the jar for the swing app:
                 #/*.jar = anon
                 #everything else requires authentication:
-                /** = authc
+                #/** = authc
             </value>
         </property>
     </bean>
