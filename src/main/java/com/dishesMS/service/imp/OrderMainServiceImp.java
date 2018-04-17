@@ -6,6 +6,7 @@ import com.dishesMS.service.IOrderMainService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -58,5 +59,22 @@ public class OrderMainServiceImp implements IOrderMainService{
      */
     public List<OrderMain> getAllOrderMain() {
         return iOrderMainDao.selectAllOrder();
+    }
+
+    public List<OrderMain> getAllDetailOrderMain() {
+
+        return iOrderMainDao.selectAllDetailOrderMain();
+    }
+
+    public boolean editCheckoutInfo(int orderId, int status, int staffId , Timestamp checkoutDate) {
+        try{
+            iOrderMainDao.updateCheckoutInfo(orderId,status,staffId,checkoutDate);
+        }catch(Exception e)
+        {
+            e.printStackTrace();
+            return false;
+
+        }
+        return true;
     }
 }

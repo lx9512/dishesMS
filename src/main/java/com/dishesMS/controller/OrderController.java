@@ -1,19 +1,22 @@
 package com.dishesMS.controller;
 
+import com.dishesMS.common.CookingPanel;
 import com.dishesMS.model.Dishes;
 import com.dishesMS.model.Order;
 import com.dishesMS.model.OrderMain;
-import com.dishesMS.service.ICustomerService;
-import com.dishesMS.service.IDishesService;
-import com.dishesMS.service.IOrderMainService;
-import com.dishesMS.service.IOrderService;
+import com.dishesMS.model.Staff;
+import com.dishesMS.service.*;
+import org.apache.shiro.SecurityUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -30,6 +33,7 @@ public class OrderController {
     private IOrderService orderService;
     @Resource
     private IOrderMainService orderMainService;
+
 
     /**
      * 通过前台传参确定返回类型
@@ -145,6 +149,51 @@ public class OrderController {
             orderService.updateOrder(order);
         }
         return "redirect:/customerJump/viewOrder";
+    }
+
+    /**
+     * @return
+     * 跳转至订单页面
+     */
+    @RequestMapping("/jumpOrder")
+    public ModelAndView jumpOrderPage()
+    {
+        ModelAndView modelAndView = new ModelAndView();
+        List<OrderMain> orderMainList = orderMainService.getAllDetailOrderMain();
+        modelAndView.addObject("orderMainList",orderMainList);
+        modelAndView.setViewName("/system/orderMng/orderPage");
+        return modelAndView;
+    }
+
+    /**
+     * @param orderId
+     * @return
+     *  结账功能
+     */
+    @RequestMapping("checkout")
+    public String checkout(int orderId)
+    {
+        /*
+        获取当前登录员工信息
+         */
+        Staff staffUser =  (Staff) SecurityUtils.getSubject().getPrincipal();
+//        System.out.println(staffUser.getAccount());
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+        Date date = new Date();
+        try{
+            date = simpleDateFormat.parse(simpleDateFormat.format(date));
+        }catch (ParseException e) {
+            System.out.println("结账日期格式转换出错！");
+            e.printStackTrace();
+        }
+        /*
+        更新结账信息记录,订单id,订单状态,员工id,结账日期
+         */
+        Timestamp checkoutDate = new Timestamp(date.getTime());
+        if( orderMainService.editCheckoutInfo(orderId,2,staffUser.getId(),checkoutDate) )
+            return "redirect:/Order/jumpOrderPage";
+        else
+            return "error";
     }
 
 }

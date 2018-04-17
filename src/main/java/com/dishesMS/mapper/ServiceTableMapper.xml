@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dishesMS.dao.IServiceTableDAO">
+    <resultMap id="BaseResultMap" type="com.dishesMS.model.ServiceTable">
+        <id property="id" column="id" />
+        <result property="orderInfoId" column="orderInfoId" />
+        <result property="serviceTime" column="serviceTime" />
+        <result property="serviceNumber" column="serviceNumber" />
+        <result property="serviceStaffId" column="serviceStaffId" />
+    </resultMap>
+    <resultMap id="ServiceTableMap" type="com.dishesMS.model.ServiceTable" extends="BaseResultMap">
+        <association property="order"
+                     column="orderInfoId"
+                     javaType="com.dishesMS.model.Order"
+                     select="com.dishesMS.dao.IOrderDao.selectOrderById"
+        />
+    </resultMap>
+
+    <insert id="insertServiceTable" parameterType="com.dishesMS.model.ServiceTable" useGeneratedKeys="true" keyProperty="id">
+        insert  INTO  serviceTable (orderInfoId,serviceTime,serviceNumber,serviceStaffId) VALUES (#{orderInfoId}, #{serviceTime}, #{serviceNumber},#{serviceStaffId})
+    </insert>
+    <select id="selectServiceTableByStaffId" parameterType="int" resultMap="ServiceTableMap">
+        select * from serviceTable where serviceStaffId = #{staffId}
+    </select>
+</mapper>

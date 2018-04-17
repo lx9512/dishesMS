@@ -1,6 +1,7 @@
 package com.dishesMS.dao;
 
 import com.dishesMS.model.Order;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -17,6 +18,8 @@ public interface IOrderDao {
 
     List<Order> selectAllDetailOrderByOrderId(Integer orderId);
 
+    List<Order> selectIncompleteOrders();
+
     int deleteByPrimaryKey(Integer id);
 
     int insert(Order record);
@@ -28,4 +31,6 @@ public interface IOrderDao {
     int updateByPrimaryKeySelective(Order record);
 
     int updateByPrimaryKey(Order record);
+
+    int updateCompleteStatus(@Param("completStatus") int completeStatus,@Param("id") int id);
 }

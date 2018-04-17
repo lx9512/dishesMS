@@ -7,13 +7,13 @@
     <result column="gender" property="gender" jdbcType="VARCHAR" />
     <result column="tel" property="tel" jdbcType="VARCHAR" />
     <result column="email" property="email" jdbcType="VARCHAR" />
-    <result column="brith_date" property="brithDate" jdbcType="TIMESTAMP" />
+    <result column="birth_date" property="birthDate" jdbcType="TIMESTAMP" />
     <result column="points" property="points" jdbcType="INTEGER" />
     <result column="account" property="account" jdbcType="VARCHAR" />
     <result column="password" property="password" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, name, gender, tel, email, brith_date, points, account, password
+    id, name, gender, tel, email, birth_date, points, account, password
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -21,17 +21,23 @@
     from customer
     where id = #{id,jdbcType=INTEGER}
   </select>
+
+  <!-- 20180414 add by lx -->
+  <select id="selectCustomerById" parameterType="int" resultType="com.dishesMS.model.Customer">
+    select * from customer where id = #{customer_id}
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from customer
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.dishesMS.model.Customer" >
     insert into customer (id, name, gender, 
-      tel, email, brith_date, 
+      tel, email, birth_date,
       points, account, password
       )
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{gender,jdbcType=VARCHAR}, 
-      #{tel,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{brithDate,jdbcType=TIMESTAMP}, 
+      #{tel,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{birthDate,jdbcType=TIMESTAMP},
       #{points,jdbcType=INTEGER}, #{account,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}
       )
   </insert>
@@ -53,8 +59,8 @@
       <if test="email != null" >
         email,
       </if>
-      <if test="brithDate != null" >
-        brith_date,
+      <if test="birthDate != null" >
+        birth_date,
       </if>
       <if test="points != null" >
         points,
@@ -82,8 +88,8 @@
       <if test="email != null" >
         #{email,jdbcType=VARCHAR},
       </if>
-      <if test="brithDate != null" >
-        #{brithDate,jdbcType=TIMESTAMP},
+      <if test="birthDate != null" >
+        #{birthDate,jdbcType=TIMESTAMP},
       </if>
       <if test="points != null" >
         #{points,jdbcType=INTEGER},
@@ -111,8 +117,8 @@
       <if test="email != null" >
         email = #{email,jdbcType=VARCHAR},
       </if>
-      <if test="brithDate != null" >
-        brith_date = #{brithDate,jdbcType=TIMESTAMP},
+      <if test="birthDate != null" >
+        birth_date = #{birthDate,jdbcType=TIMESTAMP},
       </if>
       <if test="points != null" >
         points = #{points,jdbcType=INTEGER},
@@ -132,7 +138,7 @@
       gender = #{gender,jdbcType=VARCHAR},
       tel = #{tel,jdbcType=VARCHAR},
       email = #{email,jdbcType=VARCHAR},
-      brith_date = #{brithDate,jdbcType=TIMESTAMP},
+      birth_date = #{birthDate,jdbcType=TIMESTAMP},
       points = #{points,jdbcType=INTEGER},
       account = #{account,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR}

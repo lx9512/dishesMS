@@ -13,7 +13,7 @@ public class Customer {
 
     private String email;
 
-    private Date brithDate;
+    private Date birthDate;
 
     private Integer points;
 
@@ -61,12 +61,12 @@ public class Customer {
         this.email = email == null ? null : email.trim();
     }
 
-    public Date getBrithDate() {
-        return brithDate;
+    public Date getBirthDate() {
+        return birthDate;
     }
 
-    public void setBrithDate(Date brithDate) {
-        this.brithDate = brithDate;
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
     }
 
     public Integer getPoints() {

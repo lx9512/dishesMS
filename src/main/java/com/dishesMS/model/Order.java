@@ -16,6 +16,8 @@ public class Order {
 
     private Dishes dishes;
 
+    private OrderMain orderMain;
+
     public Integer getId() {
         return id;
     }
@@ -70,5 +72,13 @@ public class Order {
 
     public void setDishes(Dishes dishes) {
         this.dishes = dishes;
+    }
+
+    public OrderMain getOrderMain() {
+        return orderMain;
+    }
+
+    public void setOrderMain(OrderMain orderMain) {
+        this.orderMain = orderMain;
     }
 }

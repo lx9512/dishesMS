@@ -22,10 +22,46 @@
                 <result property="describe" column="describe"/>
             </association>
         </association>
+
     </resultMap>
+    <!-- 20180416 add by lx -->
+    <resultMap id="orderDetailResultMap" type="com.dishesMS.model.Order" extends="FullResultMap">
+        <association property="orderMain" javaType="com.dishesMS.model.OrderMain">
+            <id property="id" column="id" jdbcType="INTEGER" />
+            <!--result property="orderDate" column="order_date" jdbcType="TIMESTAMP"/ -->
+            <result property="checkoutDate" column="checkout_date" jdbcType="TIMESTAMP" />
+            <result property="orderStatus" column="order_status" jdbcType="TIMESTAMP" />
+            <result property="money" column="money" />
+            <association property="table" column="table_id"
+                         select="com.dishesMS.dao.ITableDAO.selectTableById"
+                         javaType="com.dishesMS.model.Table" />
+        </association>
+    </resultMap>
+    <!-- -->
+
     <sql id="Base_Column_List">
     id, dishesInfo_id, order_id, number,untreate_status,complete_status
   </sql>
+
+    <select id="selectIncompleteOrders" resultMap="orderDetailResultMap">
+        select *
+        from
+        order_info
+        INNER JOIN  orderm ON  order_info.order_id = orderm.id
+        INNER JOIN dishes_info ON order_info.dishesInfo_id = dishes_info.id
+        INNER JOIN dishes_variety ON dishes_info.variety_id = dishes_variety.id
+        where 'number' > complete_status order by orderm.order_date ASC
+    </select>
+
+    <select id="selectOrderById" resultMap="orderDetailResultMap">
+        select *
+        from
+        order_info
+        INNER JOIN  orderm ON  order_info.order_id = orderm.id
+        INNER JOIN dishes_info ON order_info.dishesInfo_id = dishes_info.id
+        INNER JOIN dishes_variety ON dishes_info.variety_id = dishes_variety.id
+        where order_info.id = #{orderInfoId} order by orderm.order_date ASC
+    </select>
 
     <select id="selectAllDetailOrderByOrderId" resultMap="FullResultMap" parameterType="java.lang.Integer">
 SELECT
@@ -53,6 +89,10 @@ WHERE order_id=#{orderId,jdbcType=INTEGER}
     <select id="selectAllOrderByOrderId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
     select * FROM order_info where order_id=#{orderId,jdbcType=INTEGER}
   </select>
+
+    <select id="selectOrderByOrderMainId" resultMap="FullResultMap">
+        select * from order_info where order_id = #{0}
+    </select>
 
     <select id="selectOrderByDishesIdAndOrderMainID" resultMap="BaseResultMap">
     SELECT * from order_info where dishesInfo_id=#{0} AND order_id=#{1}
@@ -150,4 +190,8 @@ WHERE order_id=#{orderId,jdbcType=INTEGER}
       complete_status = #{completeStatus,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+    <update id="updateCompleteStatus">
+        update order_info set complete_status = #{completStatus} where id = #{id}
+    </update>
 </mapper>
