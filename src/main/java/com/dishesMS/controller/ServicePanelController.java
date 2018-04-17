@@ -29,7 +29,7 @@ public class ServicePanelController {
         ModelAndView modelAndView = new ModelAndView();
         List<Order> servicePanelOrders = servicePanelService.findAllOrderFromServicePanel();
         modelAndView.addObject("serviceOrders",servicePanelOrders);
-        modelAndView.setViewName("");   ////
+        modelAndView.setViewName("/system/servicePanel/servicePanelPage");   ////
         return modelAndView;
     }
     @RequestMapping("responseOrderService")

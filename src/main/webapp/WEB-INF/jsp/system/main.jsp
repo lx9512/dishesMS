@@ -227,14 +227,14 @@
                 <div>订单管理</div>
                 <ul>
                     <li><a onclick="loadPage('/Order/jumpOrder','main')">订单信息</a> </li>
-                    <li><a href="#">菜肴烹饪</a> </li>
+                    <li><a onclick="loadPage('/cookingPanel/jumpCookList','main')">菜肴烹饪</a> </li>
                 </ul>
                 <div>桌台管理</div>
                 <ul>
                     <li><a onclick="loadPage('/table/jumpTable','main')">桌台信息</a> </li>
                     <li><a onclick="loadPage('/table/makeQRCode','main')">二维码配置</a></li>
                 </ul>
-                <div>服务面板</div>
+                <div><a onclick="loadPage('/servicePanel/getServicePanel','main')" >服务面板 </a></div>
                 <div class="nav nav-sidebar">人员管理</div>
                 <ul>
                     <li class="active"><a href="#">会员信息</a> </li>
