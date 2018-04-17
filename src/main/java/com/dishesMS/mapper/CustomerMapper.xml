@@ -21,6 +21,9 @@
     from customer
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="selectCustomerByNameAndPwd" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select * from customer WHERE name=#{0} OR account=#{0} AND password=#{1}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from customer
     where id = #{id,jdbcType=INTEGER}

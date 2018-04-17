@@ -16,6 +16,10 @@ public class CustomerImp implements ICustomerService {
     @Resource
     private ICustomerDAO ICustomerDAO;
 
+    public Customer getCustomerByTokon(String name,String password) {
+        return ICustomerDAO.selectCustomerByNameAndPwd(name,password);
+    }
+
     public Customer getCustomerById(Integer id) {
         return ICustomerDAO.selectByPrimaryKey(id);
     }

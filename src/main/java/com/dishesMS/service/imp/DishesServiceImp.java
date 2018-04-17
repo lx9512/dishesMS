@@ -28,4 +28,8 @@ public class DishesServiceImp implements IDishesService {
     public List<Dishes> findAllByDescribe(String describe) {
         return dishesDAO.selectAllByDescribe(describe);
     }
+
+    public List<Dishes> findBySearchKey(String searchKey) {
+        return dishesDAO.selectSearchResult(searchKey);
+    }
 }

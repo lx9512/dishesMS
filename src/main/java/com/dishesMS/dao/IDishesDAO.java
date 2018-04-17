@@ -13,4 +13,5 @@ public interface IDishesDAO {
     public void insertDishes(Dishes dishes);
     public List<Dishes> selectAllDishes();
     public List<Dishes> selectAllByDescribe(String describe);
+    public List<Dishes> selectSearchResult(String searchKey);
 }

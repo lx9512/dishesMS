@@ -17,4 +17,6 @@ public interface ICustomerDAO {
 
     int updateByPrimaryKey(Customer record);
 
+    Customer selectCustomerByNameAndPwd(String name,String password);
+
 }
