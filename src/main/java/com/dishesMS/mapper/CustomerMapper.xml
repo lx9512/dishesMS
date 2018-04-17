@@ -127,6 +127,9 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="selectCustomerByNameAndPwd" parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT * FROM customer where name=${0} OR account=${0} and password=${1}
+  </select>
   <update id="updateByPrimaryKey" parameterType="com.dishesMS.model.Customer" >
     update customer
     set name = #{name,jdbcType=VARCHAR},
