@@ -1,7 +1,82 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dishesMS.dao.ITableDAO">
-    
+
+    <resultMap id="BaseResultMap" type="com.dishesMS.model.Table" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="areaName" property="areaName" jdbcType="VARCHAR" />
+        <result column="number" property="number" jdbcType="VARCHAR" />
+        <result column="peopleNum" property="peopleNum" jdbcType="INTEGER" />
+        <result column="status" property="status" jdbcType="SMALLINT" />
+        <result column="describe" property="describe" jdbcType="VARCHAR" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        id, areaName, number, peopleNum, status, table_info.describe
+    </sql>
+    <insert id="insertSelective" parameterType="com.dishesMS.model.Table" >
+        insert into table_info
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                id,
+            </if>
+            <if test="areaName != null" >
+                areaName,
+            </if>
+            <if test="number != null" >
+                number,
+            </if>
+            <if test="peopleNum != null" >
+                peopleNum,
+            </if>
+            <if test="status != null" >
+                status,
+            </if>
+            <if test="describe != null" >
+                table_info.describe,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="areaName != null" >
+                #{areaName,jdbcType=VARCHAR},
+            </if>
+            <if test="number != null" >
+                #{number,jdbcType=VARCHAR},
+            </if>
+            <if test="peopleNum != null" >
+                #{peopleNum,jdbcType=INTEGER},
+            </if>
+            <if test="status != null" >
+                #{status,jdbcType=SMALLINT},
+            </if>
+            <if test="describe != null" >
+                #{describe,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.dishesMS.model.Table" >
+        update table_info
+        <set >
+            <if test="areaName != null" >
+                areaName = #{areaName,jdbcType=VARCHAR},
+            </if>
+            <if test="number != null" >
+                number = #{number,jdbcType=VARCHAR},
+            </if>
+            <if test="peopleNum != null" >
+                peopleNum = #{peopleNum,jdbcType=INTEGER},
+            </if>
+            <if test="status != null" >
+                status = #{status,jdbcType=SMALLINT},
+            </if>
+            <if test="describe != null" >
+                table_info.describe = #{describe,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
     <select id="selectTableByAN" resultType="com.dishesMS.model.Table">
         SELECT * from table_info where areaName like #{areaName} and table_info.number like #{number}
     </select>

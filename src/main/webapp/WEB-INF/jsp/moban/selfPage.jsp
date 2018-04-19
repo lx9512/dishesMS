@@ -22,44 +22,66 @@
     <meta name="description" content="" />
     <meta name="keywords" content="" />
     <link rel="stylesheet" href="default.css">
-
+<script>
+    $(document).ready(function(){
+        $("#edit").click(function(){
+            htmlobj=$.ajax({url:"/customer/editSelfPage",async:false});
+            $("#formCenter").html(htmlobj.responseText);
+        });
+        $("#selfMsg").click(function(){
+           window.location.href="/customerJump/selfPage";
+        });
+        $("#orderRecord").click(function(){
+            htmlobj=$.ajax({url:"/customer/orderRecord",async:false});
+            $("#formCenter").html(htmlobj.responseText);
+        });
+    });
+</script>
 </head>
 <body>
 <jsp:include page="top.jsp"></jsp:include>
+<br><br>
 <div class="main-head">
-    <p><span>个人信息</span></p>
+    <p><span><button class="button" id="selfMsg">个人信息</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button class="button" id="orderRecord">账单记录</button></span></p>
 </div>
-<div class="from-self">
+<div class="from-self" id="formCenter">
     <form action="#" method="post" >
         <ul>
             <li>
                 <label for="username">姓名</label>
-                <input type="text" name="name" id="username">
+                <input type="text" name="name" id="username" value="${Customer.getName()}" readonly />
             </li>
             <li>
                 <label for="phonenumber">电话号码</label>
-                <input type="text" name="tel" id="phonenumber">
+                <input type="text" name="tel" id="phonenumber" value="${Customer.getTel()}" readonly />
             </li>
             <li>
                 <label for="email">电子邮件</label>
-                <input type="text" name="email" id="email">
+                <input type="text" name="email" id="email" value="${Customer.getEmail()}" readonly />
             </li>
             <li>
                 <label for="time">出生日期</label>
-                <input type="text" name="time" id="time">
-            </li>
-
-            <li>
-                <label for="date">日期</label>
-                <input type="text" name="date" id="date">
+                <input type="text" name="time" id="time" value="${Customer.getBirthDate()}" readonly />
             </li>
             <li>
-                <label for="guestbook">留言</label>
-                <input type="text" name="guestbook" id="guestbook">
+                <label for="account">账户名</label>
+                <input type="text" name="account" id="account" value="${Customer.account}" readonly />
+            </li>
+            <li>
+                <label for="point">积分</label>
+                <input type="text" name="point" id="point" value="${Customer.points}" readonly />
+            </li>
+            <li>
+                <label for="gender">个人喜好</label>
+                <input type="text" name="gender" id="gender" value="${Customer.getGender()}" readonly />
             </li>
         </ul>
-        <a class="reserve" href="">修改，提交</a>
+        <button class="reserve" id="edit">修改</button>
     </form>
 </div>
+
+<jsp:include page="end.jsp"></jsp:include>
+
 </body>
 </html>

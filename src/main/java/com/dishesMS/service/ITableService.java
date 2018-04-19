@@ -14,4 +14,7 @@ public interface ITableService {
     public Table findTableById(int id);
     public boolean reviseTable(Table table);
     public boolean removeTable(int id);
+
+    public boolean addTableLit(Table table);
+    public boolean updateTableLit(Table table);
 }

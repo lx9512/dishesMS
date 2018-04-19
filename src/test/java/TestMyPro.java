@@ -46,8 +46,17 @@ public class TestMyPro {
         logger.info(order.getId());
         List<Order> order1 = orderService.getAllDetailByOrderId(2);
         logger.info(order1.get(0).getDishes().getDishesVariety().getDescribe());
-        dishes = dishesService.findBySearchKey("肉");
-        logger.info(dishes);
+//        dishes = dishesService.findBySearchKey("肉");
+//        logger.info(dishes);
+        List<OrderMain> orderMains = iOrderMainService.getAllOldOrderMain(19903);
+        for(OrderMain ordermain : orderMains){
+            logger.info(ordermain.getId());
+           List<Order> orders = orderMain.getOrderInfo();
+           for(Order order2 : orders){
+               order2.getDishes().getName();
+           }
+        }
+
 
     }
 }

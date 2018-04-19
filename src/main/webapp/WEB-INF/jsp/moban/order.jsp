@@ -36,7 +36,9 @@
     --%>
     <c:choose>
         <c:when test="${orderList == null}">
-            <p>你好！您还没有进行点餐</p>
+            <div class="main-about-body">
+            <span class="text-center"><p class="list-group-item-text" style="size: 500px;">你好！您还没有进行点餐</p></span>
+            </div>
         </c:when>
         <c:otherwise>
             <c:set var="total"  value="0"/>
@@ -80,9 +82,9 @@
                                 价格： ${order.getDishes().getPrice()}
                             </th>
                             <th>
-                                ${order.getNumber()}<br>
-                                <a href="/Order/addNumber/${order.getId()}">加一</a>&nbsp;
-                                <a href="/Order/subNumber/${order.getId()}">${order.getUntreateStatus()>0?"减一":""}</a><br>
+                                <a href="/Order/addNumber/${order.getId()}">+</a>&nbsp;
+                                ${order.getNumber()}&nbsp;
+                                <a href="/Order/subNumber/${order.getId()}">${order.getUntreateStatus()>0?"-":""}</a><br>
 
                             </th>
                             <th>${order.getUntreateStatus()} <br>
@@ -112,7 +114,8 @@
                     <tr>
                         <th colspan="6">
                             <div  class="text-right">
-                                <p><span>总金额:￥${total}</span><button href="#">结账</button></p>
+                                <p><span>总金额:￥${total}</span><button
+                                        onclick="javascrtpt:window.location.href='/Order/selfCheck'">结账</button></p>
                             </div>
                         </th>
                     </tr>

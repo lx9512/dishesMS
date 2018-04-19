@@ -16,4 +16,8 @@ public interface IOrderMainService {
     public List<OrderMain> getAllOrderMain();
     public List<OrderMain> getAllDetailOrderMain();
     public boolean editCheckoutInfo(int orderId, int status, int staffId, Timestamp checkoutDate);
+
+    public boolean updateOrderMain(OrderMain orderMain);
+    public Integer getTotal(Integer id);
+    public boolean addOrderMain(OrderMain orderMain);
 }

@@ -34,4 +34,6 @@ public interface IOrderMainDao {
     int updateByPrimaryKeySelective(OrderMain record);
 
     int updateByPrimaryKey(OrderMain record);
+
+    Integer getTotal(Integer id);
 }
