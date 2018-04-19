@@ -31,7 +31,7 @@
     <result property="orderStatus" column="order_status" jdbcType="INTEGER" />
     <result property="money" column="money" />
     <association property="customer" column="customer_id"
-                 select="com.dishesMS.dao.ICustomerDAO.selectCustomerById"
+                 select="com.dishesMS.dao.ICustomerDAO.selectByPrimaryKey"
                  javaType="com.dishesMS.model.Customer" />
     <association property="table" column="table_id"
                  select="com.dishesMS.dao.ITableDAO.selectTableById"
@@ -192,7 +192,7 @@ WHERE customer_id = #{customerId,jdbcType=INTEGER} AND order_status=0
     where id = #{id,jdbcType=INTEGER}
   </update>
 
-  <!--update id="updateCheckoutInfo">
+  <update id="updateCheckoutInfo">
     update orderm SET order_status = #{status},staff_id = #{staffId},checkout_date = #{checkoutDate} where id = #{orderId}
-  </update -->
+  </update>
 </mapper>

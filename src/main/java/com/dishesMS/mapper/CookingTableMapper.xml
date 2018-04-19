@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dishesMS.dao.ICookingTableDAO">
+    <resultMap id="BaseResultMap" type="com.dishesMS.model.CookingTable">
+        <id property="id" column="id" />
+        <result property="orderInfoId" column="orderInfoId" />
+        <result property="cookingNum" column="cookingNum" />
+        <result property="startDate" column="startDate" />
+        <result property="endDate" column="endDate" />
+        <result property="cookingStaffId" column="cookingStaffId" />
+        <result property="notServiceNum" column="notServiceNum" />
+    </resultMap>
+
+    <resultMap id="CookingTableResultMap" type="com.dishesMS.model.CookingTable" extends="BaseResultMap">
+        <association property="order"
+                     column="orderInfoId"
+                     javaType="com.dishesMS.model.Order"
+                     select="com.dishesMS.dao.IOrderDao.selectOrderById" />
+    </resultMap>
+
+    <insert id="insertCookingTable" parameterType="com.dishesMS.model.CookingTable" keyProperty="id" useGeneratedKeys="true">
+        insert INTO  cookingTable(orderInfoId,cookingNum,startDate,notServiceNum)
+        VALUES (#{orderInfoId},#{cookingNum},#{startDate},#{notServiceNum})
+    </insert>
+
+    <update id="updateCookingNum" parameterType="com.dishesMS.model.CookingTable">
+        update cookingTable set  cookingNum=#{cookingNum},
+          <if test="#{endDate} != null">
+              endDate = #{endDate},
+          </if>
+          <if test="#{cookingStaffId} != 0">
+              cookingStaffId = #{cookingStaffId},
+          </if>
+          where  orderInfoId = #{orderInfoId};
+    </update>
+
+    <update id="updateNotServiceNum" parameterType="com.dishesMS.model.CookingTable">
+        update cookingTable SET  notServiceNum = #{notServiceNum} where id = #{id}
+    </update>
+
+    <select id="selectCookingTable" resultMap="CookingTableResultMap">
+        select * FROM cookingTable
+        where cookingNum > 0
+    </select>
+
+    <select id="selectCookingTableByOrderInfoId" parameterType="int" resultMap="CookingTableResultMap">
+        select * from cookinTable where orderInfoId = #{0}
+    </select>
+
+    <select id="selectNotServiceOrders" resultMap="CookingTableResultMap">
+        SELECT * FROM cookinTable where notServiceNum > 0
+    </select>
+</mapper>

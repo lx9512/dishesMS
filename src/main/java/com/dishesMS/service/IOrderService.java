@@ -14,7 +14,7 @@ public interface IOrderService {
     public Order getOrderByIdDAndOrderId(Integer orderId,Integer id);
     public List<Order> getAllDetailByOrderId(Integer orderId);
     public List<Order>  getAllOrderByOrderId(Integer orderId);
-    public List<Order> getIncompleteOrders();
+    public List<Order> findIncompleteOrders();
     public int insertOrder(Order order);
     public int updateOrder(Order order);
     public int deleteOrderById(Integer id);

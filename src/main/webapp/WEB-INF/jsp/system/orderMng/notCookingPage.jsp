@@ -25,7 +25,7 @@
     </thead>
     <tbody>
     <%int n = 1; %>
-    <c:forEach var="order" items="${cookList}">
+    <c:forEach var="order" items="${notCookingOrders}">
         <tr>
             <td><%=n++%></td>
             <td>${order.orderMain.table.areaName}${order.orderMain.table.number}</td>

@@ -56,8 +56,8 @@
         <td>
             <a href="#">查看详情</a>
             <c:if test="${orderMain.orderStatus == 0}">
-
-            </c:if><a href="/Order/checkout">结账</a><!--  -->
+                <a href="/Order/checkout?orderId=${orderMain.id}" onclick="window.alert('是否要结账')">结账</a>
+            </c:if>
         </td>
         <td>
             <c:if test="${orderMain.orderStatus == 2}">

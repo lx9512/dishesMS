@@ -68,4 +68,19 @@ public class CustomerController {
         return modelAndView;
     }
 
+
+    /**
+     *会员管理
+     *  @return
+     */
+    @RequestMapping("jumpCustomer")
+    public ModelAndView jumpCustomerPage()
+    {
+        ModelAndView modelAndView = new ModelAndView();
+        List<Customer> customerList = customerService.getAllCustomer();
+        modelAndView.addObject("customerList",customerList);
+        modelAndView.setViewName("/system/peopleMng/customerPage");
+        return modelAndView;
+    }
+
 }

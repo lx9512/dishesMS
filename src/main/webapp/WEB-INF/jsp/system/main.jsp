@@ -237,7 +237,7 @@
                 <div><a onclick="loadPage('/servicePanel/getServicePanel','main')" >服务面板 </a></div>
                 <div class="nav nav-sidebar">人员管理</div>
                 <ul>
-                    <li class="active"><a href="#">会员信息</a> </li>
+                    <li class="active"><a onclick="loadPage('/customer/jumpCustomer','main')">会员信息</a> </li>
                     <li class=""><a onclick="loadPage('/staff/jumpStaff','main')">员工信息</a> </li>
                     <li class=""><a onclick="loadPage('/role/jumpRole','main')">职位信息</a> </li>
                 </ul>

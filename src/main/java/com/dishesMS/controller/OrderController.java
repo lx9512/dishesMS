@@ -1,12 +1,12 @@
 package com.dishesMS.controller;
 
-import com.dishesMS.common.CookingPanel;
+import com.dishesMS.common.DateFormtUtil;
+import com.dishesMS.common.LoginUtil;
 import com.dishesMS.model.Dishes;
 import com.dishesMS.model.Order;
 import com.dishesMS.model.OrderMain;
 import com.dishesMS.model.Staff;
 import com.dishesMS.service.*;
-import org.apache.shiro.SecurityUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,8 +16,6 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.annotation.Resource;
 
 import java.sql.Timestamp;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -189,22 +187,15 @@ public class OrderController {
         /*
         获取当前登录员工信息
          */
-        Staff staffUser =  (Staff) SecurityUtils.getSubject().getPrincipal();
+        Staff staffUser = LoginUtil.getLoginStaff();
 //        System.out.println(staffUser.getAccount());
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
-        Date date = new Date();
-        try{
-            date = simpleDateFormat.parse(simpleDateFormat.format(date));
-        }catch (ParseException e) {
-            System.out.println("结账日期格式转换出错！");
-            e.printStackTrace();
-        }
+        Date date = DateFormtUtil.dateFormt(new Date());
         /*
         更新结账信息记录,订单id,订单状态,员工id,结账日期
          */
         Timestamp checkoutDate = new Timestamp(date.getTime());
         if( orderMainService.editCheckoutInfo(orderId,2,staffUser.getId(),checkoutDate) )
-            return "redirect:/Order/jumpOrderPage";
+            return "redirect:/jumpOrderPage";
         else
             return "error";
     }

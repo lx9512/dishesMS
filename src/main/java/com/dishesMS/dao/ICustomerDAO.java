@@ -3,6 +3,8 @@ package com.dishesMS.dao;
 import com.dishesMS.model.Customer;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface ICustomerDAO {
     int deleteByPrimaryKey(Integer id);
@@ -18,5 +20,7 @@ public interface ICustomerDAO {
     int updateByPrimaryKey(Customer record);
 
     Customer selectCustomerByNameAndPwd(String name,String password);
+
+    List<Customer> selectAllCustomer();
 
 }

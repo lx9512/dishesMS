@@ -33,7 +33,11 @@ public class OrderServiceImp implements IOrderService {
         return iOrderDao.selectAllOrderByOrderId(orderId);
     }
 
-    public List<Order> getIncompleteOrders() {
+    /**
+     * 查找未烹饪订单
+     * @return
+     */
+    public List<Order> findIncompleteOrders() {
         return iOrderDao.selectIncompleteOrders();
     }
 

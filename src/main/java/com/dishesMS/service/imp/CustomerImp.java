@@ -6,6 +6,7 @@ import com.dishesMS.service.ICustomerService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * Created by yzp on 2018/3/14.
@@ -26,5 +27,9 @@ public class CustomerImp implements ICustomerService {
 
     public int updateById(Customer customer) {
         return ICustomerDAO.updateByPrimaryKey(customer);
+    }
+
+    public List<Customer> getAllCustomer() {
+        return ICustomerDAO.selectAllCustomer();
     }
 }
