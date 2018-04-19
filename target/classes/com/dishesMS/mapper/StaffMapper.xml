@@ -37,12 +37,20 @@
     </select>
 
     <select id="selectStaffById" parameterType="int" resultType="com.dishesMS.model.Staff">
-        SELECT * FROM staff where id = #{id}
+        SELECT * FROM staff where id = #{staff_id}
     </select>
 
     <update id="updateStaff" parameterType="com.dishesMS.model.Staff">
         UPDATE staff SET name = #{name},gender = #{gender},idCard = #{idCard},tel = #{tel},email = #{email},
         account = #{account},password = #{password},role_id = #{role.id} WHERE id = #{id}
+    </update>
+
+    <update id="updateStaffPassword" parameterType="String">
+        UPDATE staff SET password = #{password} where account like #{account}
+    </update>
+
+    <update id="updateStaffByAccount" parameterType="com.dishesMS.model.Staff">
+        update staff set name = #{name},gender = #{gender},idCard = #{idCard},tel = #{tel},email = #{email} where account like #{account}
     </update>
 
     <delete id="deleteStaff" parameterType="int">

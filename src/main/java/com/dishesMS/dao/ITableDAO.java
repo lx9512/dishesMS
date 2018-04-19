@@ -18,4 +18,6 @@ public interface ITableDAO {
     public Table selectTableById(int id);
     public void updateTable(Table table);
     public void deleteTable(int id);
+    public int updateByPrimaryKeySelective(Table table);
+    public int insertSelective(Table table);
 }

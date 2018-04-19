@@ -5,7 +5,7 @@
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="customer_id" property="customerId" jdbcType="INTEGER" />
     <result column="order_date" property="orderDate" jdbcType="TIMESTAMP" />
-    <result column="checkout_date" property="checkDate" jdbcType="TIMESTAMP" />
+    <result column="checkout_date" property="checkoutDate" jdbcType="TIMESTAMP" />
     <result column="table_id" property="tableId" jdbcType="INTEGER" />
     <result column="money" property="money" jdbcType="INTEGER" />
     <result column="order_status" property="orderStatus" jdbcType="INTEGER" />
@@ -13,16 +13,32 @@
   </resultMap>
 
   <resultMap id="OrderResultMap" type="com.dishesMS.model.OrderMain" extends="BaseResultMap">
-    <collection property="orderInfo" javaType="list" ofType="com.dishesMS.model.Order">
-      <id column="id" property="id" jdbcType="INTEGER" />
-      <result column="dishesInfo_id" property="dishesinfoId" jdbcType="INTEGER" />
-      <result column="order_id" property="orderId" jdbcType="INTEGER" />
-      <result column="number" property="number" jdbcType="INTEGER" />
-      <result column="untreate_status" property="untreateStatus" jdbcType="INTEGER"/>
-      <result column="complete_status" property="completeStatus" jdbcType="INTEGER"/>
+    <collection property="orderInfo" ofType="com.dishesMS.model.Order">
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="dishesInfo_id" property="dishesinfoId" jdbcType="INTEGER" />
+    <result column="order_id" property="orderId" jdbcType="INTEGER" />
+    <result column="number" property="number" jdbcType="INTEGER" />
+    <result column="untreate_status" property="untreateStatus" jdbcType="INTEGER"/>
+    <result column="complete_status" property="completeStatus" jdbcType="INTEGER"/>
     </collection>
   </resultMap >
-
+<resultMap id="AllOldResultMap" type="com.dishesMS.model.OrderMain" extends="BaseResultMap">
+  <collection property="orderInfo" ofType="com.dishesMS.model.Order">
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="dishesInfo_id" property="dishesinfoId" jdbcType="INTEGER" />
+    <result column="order_id" property="orderId" jdbcType="INTEGER" />
+    <result column="number" property="number" jdbcType="INTEGER" />
+    <result column="untreate_status" property="untreateStatus" jdbcType="INTEGER"/>
+    <result column="complete_status" property="completeStatus" jdbcType="INTEGER"/>
+    <association property="dishes" javaType="com.dishesMS.model.Dishes">
+      <id column="id" property="id" jdbcType="INTEGER" />
+      <result column="name" property="name" jdbcType="VARCHAR" />
+      <result column="variety_id" property="varietyId" jdbcType="INTEGER" />
+      <result column="price" property="price" jdbcType="REAL" />
+      <result column="acridity" property="acridity" jdbcType="SMALLINT" />
+    </association>
+  </collection>
+</resultMap>
   <!--   20180414 add by lx  -->
   <resultMap id="OrderMainDetailResultMap" type="com.dishesMS.model.OrderMain">
     <id property="id" column="id" jdbcType="INTEGER" />
@@ -46,7 +62,15 @@
     </collection >
   </resultMap>
   <!-- end -->
-
+<select id="getTotal" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+  SELECT
+Sum(dishes_info.price * order_info.number) tatol
+FROM
+orderm
+left JOIN order_info ON order_info.order_id = orderm.id
+left JOIN dishes_info ON order_info.dishesInfo_id = dishes_info.id
+where orderm.id=#{id,jdbcType=INTEGER}
+</select>
   <select id="selectByCustomerId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
     select * from orderM where customer_id = #{customerId,jdbcType=INTEGER} AND order_status=0
   </select>
@@ -59,14 +83,16 @@
     select * from orderM
   </select>
 
-<select id="selectDetailOrderByCustomerId" resultMap="OrderResultMap" parameterType="java.lang.Integer">
-  SELECT
-orderM.id,
-orderM.customer_id,
-orderM.date,
-orderM.table_id,
-orderM.money,
-orderM.order_status,
+<select id="selectDetailOrderByCustomerId" resultMap="AllOldResultMap" parameterType="java.lang.Integer">
+ SELECT
+orderm.id,
+orderm.customer_id,
+orderm.checkout_date,
+orderm.Order_date,
+orderm.table_id,
+orderm.order_status,
+orderm.money,
+orderm.staff_id,
 order_info.id,
 order_info.dishesInfo_id,
 order_info.order_id,
@@ -74,33 +100,42 @@ order_info.number,
 order_info.untreate_status,
 order_info.complete_status
 FROM
-orderM
-left JOIN order_info ON orderM.id = order_info.order_id
+orderm
+left JOIN order_info ON order_info.order_id = orderm.id
 WHERE customer_id = #{customerId,jdbcType=INTEGER} AND order_status=0
 </select>
-  <select id="selectAllOldByCustomerId" resultMap="OrderResultMap" parameterType="java.lang.Integer">
-    SELECT
-    orderM.id,
-    orderM.customer_id,
-    orderM.date,
-    orderM.table_id,
-    orderM.money,
-    orderM.order_status,
-    order_info.id,
-    order_info.dishesInfo_id,
-    order_info.order_id,
-    order_info.number,
-    order_info.untreate_status,
-    order_info.complete_status
-    FROM
-    orderM
-    left JOIN order_info ON orderM.id = order_info.order_id
-    WHERE customer_id = #{customerId,jdbcType=INTEGER} AND order_status=1
+  <select id="selectAllOldByCustomerId" resultMap="AllOldResultMap" parameterType="java.lang.Integer">
+   SELECT
+orderm.id,
+orderm.customer_id,
+orderm.checkout_date,
+orderm.Order_date,
+orderm.table_id,
+orderm.order_status,
+orderm.money,
+orderm.staff_id,
+order_info.id,
+order_info.dishesInfo_id,
+order_info.order_id,
+order_info.number,
+order_info.untreate_status,
+order_info.complete_status,
+dishes_info.id,
+dishes_info.`name`,
+dishes_info.variety_id,
+dishes_info.price,
+dishes_info.acridity,
+dishes_info.photo
+FROM
+orderm
+left JOIN order_info ON order_info.order_id = orderm.id
+left JOIN dishes_info ON order_info.dishesInfo_id = dishes_info.id
+ WHERE customer_id = #{customerId,jdbcType=INTEGER} AND order_status=1 ORDER  BY orderm.id
   </select>
 
 
   <sql id="Base_Column_List" >
-    id, custmor_id, date, table_id, money,order_status
+    id, custmor_id, checkout_date, order_date,table_id, money,order_status
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -113,10 +148,10 @@ WHERE customer_id = #{customerId,jdbcType=INTEGER} AND order_status=0
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.dishesMS.model.OrderMain" >
-    insert into orderM (id, customer_id, date,
+    insert into orderM (id, customer_id,checkout_date,order_date,
       table_id, money,order_status)
-    values (#{id,jdbcType=INTEGER}, #{customerId,jdbcType=INTEGER}, #{date,jdbcType=TIMESTAMP},
-      #{tableId,jdbcType=INTEGER}, #{money,jdbcType=INTEGER},#{orderStatus,jdbcType=INTEGER})
+    values (#{id,jdbcType=INTEGER}, #{customerId,jdbcType=INTEGER}, #{checkoutDate,jdbcType=TIMESTAMP},
+       #{orderDate,jdbcType=TIMESTAMP},#{tableId,jdbcType=INTEGER}, #{money,jdbcType=INTEGER},#{orderStatus,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.dishesMS.model.OrderMain" >
     insert into orderM
@@ -127,9 +162,12 @@ WHERE customer_id = #{customerId,jdbcType=INTEGER} AND order_status=0
       <if test="customerId != null" >
         customer_id,
       </if>
-      <if test="date != null" >
-        date,
+      <if test="checkoutDate!= null" >
+        checkout_date,
       </if>
+      <if test="orderDate!= null" >
+      order_date,
+    </if>
       <if test="tableId != null" >
         table_id,
       </if>
@@ -137,7 +175,7 @@ WHERE customer_id = #{customerId,jdbcType=INTEGER} AND order_status=0
         money,
       </if>
       <if test="orderStatus != null" >
-        orderStatus,
+        order_status,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -147,9 +185,12 @@ WHERE customer_id = #{customerId,jdbcType=INTEGER} AND order_status=0
       <if test="customerId != null" >
         #{customerId,jdbcType=INTEGER},
       </if>
-      <if test="date != null" >
-        #{date,jdbcType=TIMESTAMP},
+      <if test="checkoutDate != null" >
+        #{checkoutDate,jdbcType=TIMESTAMP},
       </if>
+      <if test="orderDate!= null" >
+      #{orderDate,jdbcType=TIMESTAMP},
+    </if>
       <if test="tableId != null" >
         #{tableId,jdbcType=INTEGER},
       </if>
@@ -167,9 +208,12 @@ WHERE customer_id = #{customerId,jdbcType=INTEGER} AND order_status=0
       <if test="customerId != null" >
         customer_id = #{customerId,jdbcType=INTEGER},
       </if>
-      <if test="date != null" >
-        date = #{date,jdbcType=TIMESTAMP},
+      <if test="checkoutDate!= null" >
+        checkout_date = #{checkoutDate,jdbcType=TIMESTAMP},
       </if>
+      <if test="orderDate!= null" >
+      order_date = #{orderDate,jdbcType=TIMESTAMP},
+    </if>
       <if test="tableId != null" >
         table_id = #{tableId,jdbcType=INTEGER},
       </if>
@@ -185,14 +229,13 @@ WHERE customer_id = #{customerId,jdbcType=INTEGER} AND order_status=0
   <update id="updateByPrimaryKey" parameterType="com.dishesMS.model.OrderMain" >
     update orderM
     set customer_id = #{customerId,jdbcType=INTEGER},
-      date = #{date,jdbcType=TIMESTAMP},
-      table_id = #{tableId,jdbcType=INTEGER},
+      checkout_date = #{checkoutDate,jdbcType=TIMESTAMP},
+       order_date = #{orderDate,jdbcType=TIMESTAMP},
+       table_id = #{tableId,jdbcType=INTEGER},
       money = #{money,jdbcType=INTEGER},
        order_status = #{orderStatus,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 
-  <!--update id="updateCheckoutInfo">
-    update orderm SET order_status = #{status},staff_id = #{staffId},checkout_date = #{checkoutDate} where id = #{orderId}
-  </update -->
+
 </mapper>

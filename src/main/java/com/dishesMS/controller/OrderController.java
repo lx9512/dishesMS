@@ -95,24 +95,26 @@ public class OrderController {
 
            //判定三
 
-
-           //判定四添加或是更新
-           Order order = orderService.getOrderByDishesAndOrderId(dishesId, orderMain.getId());
-           if (order == null) {
-               order = new Order();
-               order.setNumber(1);
-               order.setOrderId(orderMain.getId());
-               order.setDishesinfoId(dishesId);
-               order.setUntreateStatus(1);
-               order.setCompleteStatus(0);
-               orderService.insertOrder(order);
-           } else {
-               order.setNumber(order.getNumber() + 1);
-               order.setUntreateStatus(order.getUntreateStatus() + 1);
-               orderService.updateOrder(order);
+           if(orderMain!=null){
+               //判定四添加或是更新
+               Order order = orderService.getOrderByDishesAndOrderId(dishesId, orderMain.getId());
+               if (order == null) {
+                   order = new Order();
+                   order.setNumber(1);
+                   order.setOrderId(orderMain.getId());
+                   order.setDishesinfoId(dishesId);
+                   order.setUntreateStatus(1);
+                   order.setCompleteStatus(0);
+                   orderService.insertOrder(order);
+               } else {
+                   order.setNumber(order.getNumber() + 1);
+                   order.setUntreateStatus(order.getUntreateStatus() + 1);
+                   orderService.updateOrder(order);
+               }
            }
            modelAndView.setViewName("redirect:/customerJump/viewDishes");
-       }
+       } else
+           modelAndView.setViewName("moban/login");
         return modelAndView;
 
     }
@@ -204,9 +206,47 @@ public class OrderController {
          */
         Timestamp checkoutDate = new Timestamp(date.getTime());
         if( orderMainService.editCheckoutInfo(orderId,2,staffUser.getId(),checkoutDate) )
-            return "redirect:/Order/jumpOrderPage";
+            return "redirect:/Order/jumpOrder";
         else
             return "error";
+    }
+
+    /**
+     * 客户自己结账处理
+     *
+     *如果是微信等结账功能需要在这里返回微信值字符串
+     * @param id
+     * @return s
+     */
+    @RequestMapping("/selfCheck")
+    public String selfCheck(@CookieValue String id)
+    {
+        /*
+        获取当前登录员工信息
+         */
+     //   Staff staffUser =  (Staff) SecurityUtils.getSubject().getPrincipal();
+//        System.out.println(staffUser.getAccount());
+        OrderMain orderMain = orderMainService.getRunOrderMain(Integer.valueOf(id));
+        //设置总金额
+        orderMain.setMoney(orderMainService.getTotal(orderMain.getId()));
+        //设置结账状态
+        orderMain.setOrderStatus(1);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+        Date date = new Date();
+        try{
+            date = simpleDateFormat.parse(simpleDateFormat.format(date));
+        }catch (ParseException e) {
+            System.out.println("结账日期格式转换出错！");
+            e.printStackTrace();
+        }
+        /*
+        更新结账信息记录,订单id,订单状态,员工id,结账日期
+         */
+        orderMain.setCheckoutDate(new Timestamp(date.getTime()));
+        if(orderMainService.updateOrderMain(orderMain))
+            return "redirect:/customerJump/viewOrder";
+        else
+            return "redirect:/customerJump/viewOrder";
     }
 
 }

@@ -36,7 +36,7 @@ public class OrderMainServiceImp implements IOrderMainService{
     }
 
     /**
-     * 得到订单的详细信息，用来打印账单
+     * 得到订单的详细信息，用来打印账单包括所有的订单信息
      * @param customerId
      * @return
      */
@@ -76,5 +76,17 @@ public class OrderMainServiceImp implements IOrderMainService{
 
         }
         return true;
+    }
+
+    public boolean updateOrderMain(OrderMain orderMain) {
+        return iOrderMainDao.updateByPrimaryKeySelective(orderMain)>0;
+    }
+
+    public Integer getTotal(Integer id) {
+        return iOrderMainDao.getTotal(id);
+    }
+
+    public boolean addOrderMain(OrderMain orderMain) {
+        return iOrderMainDao.insertSelective(orderMain)>0;
     }
 }

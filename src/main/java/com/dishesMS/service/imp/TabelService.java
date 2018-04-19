@@ -60,4 +60,12 @@ public class TabelService implements ITableService {
         }
         return true;
     }
+
+    public boolean addTableLit(Table table) {
+        return tableDAO.insertSelective(table)>0;
+    }
+
+    public boolean updateTableLit(Table table) {
+        return tableDAO.updateByPrimaryKeySelective(table)>0;
+    }
 }
