@@ -74,7 +74,7 @@
                 /login.jsp = anon
                /staff/login = anon
                 #/jsp/moban/* = anon
-                /staff/logout = logout
+                #/staff/logout = logout
                 # allow WebStart to pull the jar for the swing app:
                 #/*.jar = anon
                 #everything else requires authentication:

@@ -2,11 +2,13 @@ package com.dishesMS.controller;
 
 import com.dishesMS.model.Customer;
 import com.dishesMS.model.Dishes;
+import com.dishesMS.model.OrderMain;
 import com.dishesMS.service.ICustomerService;
 import com.dishesMS.service.IDishesService;
 import com.dishesMS.service.IOrderMainService;
 import com.dishesMS.service.IOrderService;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -65,6 +67,30 @@ public class CustomerController {
             modelAndView.setViewName("moban/productlist");
             modelAndView.addObject("DishesList", dishes);
         }
+        return modelAndView;
+    }
+
+    @RequestMapping("editSelfPage")
+    public ModelAndView getEdit(@CookieValue(required = false) String id) {
+        ModelAndView modelAndView = new ModelAndView();
+        if (id != null) {
+            Customer customer = customerService.getCustomerById(Integer.valueOf(id));
+            modelAndView.setViewName("moban/editSelfPage");
+        } else
+            modelAndView.setViewName("moban/login");
+        return modelAndView;
+    }
+
+    @RequestMapping("/orderRecord")
+    public ModelAndView getOrderRecord(@CookieValue(required = false) String id) {
+        ModelAndView modelAndView = new ModelAndView();
+        if(id!=null){
+            List<OrderMain> orderMains = orderMainService.getAllOldOrderMain(Integer.valueOf(id));
+            modelAndView.addObject("OrderMains",orderMains);
+            modelAndView.setViewName("moban/orderRecord");
+        }else
+            modelAndView.setViewName("moban/login");
+
         return modelAndView;
     }
 

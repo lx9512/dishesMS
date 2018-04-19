@@ -1,14 +1,9 @@
 package com.dishesMS.controller;
 
 import com.dishesMS.dao.IOrderDao;
-import com.dishesMS.model.Customer;
-import com.dishesMS.model.Dishes;
-import com.dishesMS.model.Order;
-import com.dishesMS.model.OrderMain;
-import com.dishesMS.service.ICustomerService;
-import com.dishesMS.service.IDishesService;
-import com.dishesMS.service.IOrderMainService;
-import com.dishesMS.service.IOrderService;
+import com.dishesMS.dao.ITableDAO;
+import com.dishesMS.model.*;
+import com.dishesMS.service.*;
 import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,6 +31,8 @@ public class CustomerJumpController {
     private IOrderService orderService;
     @Resource
     private IOrderMainService orderMainService;
+    @Resource
+    private ITableService tableService;
 
     @RequestMapping("/getTop")
     public String getTop() {
@@ -99,22 +96,23 @@ public class CustomerJumpController {
      * @return
      */
     @RequestMapping("/viewDishes")
-    public ModelAndView jumpViewDishes(@CookieValue String id) {
+    public ModelAndView jumpViewDishes(@CookieValue(required = false) String id) {
         ModelAndView modelAndView = new ModelAndView();
         Integer haveTable = null;
-        if(id!=null){
+        if (id != null) {
             OrderMain orderMain = orderMainService.getRunOrderMain(Integer.valueOf(id));
-            if(orderMain!=null);
-            else{
-                if(orderMain.getTableId()==null);
-                else
-                    haveTable=orderMain.getTableId();
+            if (orderMain != null)
+                haveTable = orderMain.getTableId();
+            else {
+                List<Table> tables = tableService.findAllTable();
+                modelAndView.addObject("Tables", tables);
             }
+
         }
         List<Dishes> dishes = dishesService.findAllDishes();
         modelAndView.setViewName("moban/productlist");
         modelAndView.addObject("DishesList", dishes);
-        modelAndView.addObject("haveTable",haveTable);
+        modelAndView.addObject("haveTable", haveTable);
         return modelAndView;
     }
 
@@ -125,14 +123,19 @@ public class CustomerJumpController {
      * @return
      */
     @RequestMapping("/viewOrder")
-    public ModelAndView jumpViewOrder(@CookieValue(required=false) String id) {
+    public ModelAndView jumpViewOrder(@CookieValue(required = false) String id) {
         ModelAndView modelAndView = new ModelAndView();
         if (id != null) {
             OrderMain orderMain = orderMainService.getRunOrderMain(Integer.valueOf(id));
-
-                modelAndView.setViewName("moban/order");
-                List<Order> orders = orderService.getAllDetailByOrderId(orderMain.getId());
+            List<Order> orders = null;
+            if (orderMain != null) {
+                orders = orderService.getAllDetailByOrderId(orderMain.getId());
                 modelAndView.addObject("orderList", orders);
+                modelAndView.setViewName("moban/order");
+            } else {
+                modelAndView.addObject("orderList", orders);
+                modelAndView.setViewName("moban/order");
+            }
 
         } else {
             modelAndView.setViewName("moban/login");
@@ -174,11 +177,20 @@ public class CustomerJumpController {
     }
 
     @RequestMapping("/selfPage")
-    public String jumpSelfPage(){
-        return "/moban/selfPage";
+    public ModelAndView jumpSelfPage(@CookieValue(required = false) String id) {
+        ModelAndView modelAndView = new ModelAndView();
+        if (id != null) {
+            modelAndView.setViewName("/moban/selfPage");
+            Customer customer = customerService.getCustomerById(Integer.valueOf(id));
+            modelAndView.addObject("Customer",customer);
+        //    modelAndView.addObject("only","readonly");
+        } else
+            modelAndView.setViewName("/moban/login");
+        return modelAndView;
     }
+
     @RequestMapping("/contact")
-    public String jumpContact(){
+    public String jumpContact() {
         return "/moban/contact";
     }
 
